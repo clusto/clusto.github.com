@@ -1,0 +1,1535 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>clusto.drivers.base.driver.Driver</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="clusto-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="clusto-module.html">Package&nbsp;clusto</a> ::
+        <a href="clusto.drivers-module.html">Package&nbsp;drivers</a> ::
+        <a href="clusto.drivers.base-module.html">Package&nbsp;base</a> ::
+        <a href="clusto.drivers.base.driver-module.html">Module&nbsp;driver</a> ::
+        Class&nbsp;Driver
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="clusto.drivers.base.driver.Driver-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class Driver</h1><p class="nomargin-top"><span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver">source&nbsp;code</a></span></p>
+<pre class="base-tree">
+object --+
+         |
+        <strong class="uidshort">Driver</strong>
+</pre>
+
+<dl><dt>Known Subclasses:</dt>
+<dd>
+      <ul class="subclass-list">
+<li><a href="clusto.test.base.drivertests.ATestDriver-class.html">test.base.drivertests.ATestDriver</a></li><li>, <a href="clusto.drivers.categories.pool.Pool-class.html">categories.pool.Pool</a></li><li>, <a href="clusto.drivers.base.device.Device-class.html">device.Device</a></li><li>, <a href="clusto.drivers.base.location.Location-class.html">location.Location</a></li><li>, <a href="clusto.drivers.base.resourcemanager.ResourceManager-class.html">resourcemanager.ResourceManager</a></li><li>, <a href="clusto.drivers.base.clustometa.ClustoMeta-class.html">clustometa.ClustoMeta</a></li>  </ul>
+</dd></dl>
+
+<hr />
+<p>Base Driver.</p>
+  <p>The Driver class provides a proxy interface for managing and Entity 
+  and its Attributes. It provides many helper functions includeing 
+  attribute setters and accessors, attribute querying, and a handful of 
+  conventions.</p>
+  <p>Every driver defines a _clusto_type and a _driver_name member 
+  variable. Upon creation these become the type and driver for the Entity 
+  and provides a mechanism for choosing the correct driver for a given 
+  Entity.</p>
+  <p>A Driver can be created by passing either the name (a string) for a 
+  new Entity you'd like to create, an already instantiated Entity object, 
+  or a Driver object (which has already been instantiated and is managing 
+  an Entity).</p>
+  <p>If a _properties member dictionary is defined they will be treated as 
+  default values for the given Entity attributes as well as exposed via a 
+  simpler mydriver.key access pattern.  So for:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">class</span> <span class="py-defname">MyDriver</span>(Driver):
+<span class="py-prompt">&gt;&gt;&gt; </span>   ...
+<span class="py-prompt">&gt;&gt;&gt; </span>   _properties = {<span class="py-string">'propA'</span>: 10, <span class="py-string">'propB'</span>: <span class="py-string">&quot;default1&quot;</span>}
+<span class="py-prompt">&gt;&gt;&gt; </span>   ...</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>d = MyDriver(<span class="py-string">'foo'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>d.propA == 10
+<span class="py-output">True</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>d.propB == <span class="py-string">&quot;default1&quot;</span>
+<span class="py-output">True</span></pre>
+  <p>Only properties with non-None default values are set in the clusto db 
+  at initial instantiation time (when creating a brand new entity).</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>d.propA = 54
+<span class="py-prompt">&gt;&gt;&gt; </span>d.propA == 54
+<span class="py-output">True</span></pre>
+  <p>Several conventions are also exposed via the Driver interface.</p>
+
+<!-- ==================== NESTED CLASSES ==================== -->
+<a name="section-NestedClasses"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Nested Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-NestedClasses"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="clusto.drivers.base.clustodriver.ClustoDriver-class.html" class="summary-name">__metaclass__</a><br />
+      Metaclass for all clusto drivers
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="clusto.drivers.base.driver.Driver-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">name_driver_entity</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      x.__init__(...) initializes x; see x.__class__.__doc__ for signature</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__eq__"></a><span class="summary-sig-name">__eq__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">other</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.__eq__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="clusto.drivers.base.driver.Driver-class.html#__repr__" class="summary-sig-name">__repr__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      repr(x)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.__repr__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__cmp__"></a><span class="summary-sig-name">__cmp__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">other</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.__cmp__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="clusto.drivers.base.driver.Driver-class.html#__hash__" class="summary-sig-name">__hash__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      hash(x)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.__hash__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__contains__"></a><span class="summary-sig-name">__contains__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">other</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.__contains__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_choose_best_driver"></a><span class="summary-sig-name">_choose_best_driver</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Examine the attributes of our entity and set the best driver class 
+      and mixins.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver._choose_best_driver">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_check_attr_name"></a><span class="summary-sig-name">_check_attr_name</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">key</span>)</span><br />
+      check to make sure the key does not contain invalid characters raise 
+      NameException if fail.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver._check_attr_name">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__getattr__"></a><span class="summary-sig-name">__getattr__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">name</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.__getattr__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="clusto.drivers.base.driver.Driver-class.html#__setattr__" class="summary-sig-name">__setattr__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">value</span>)</span><br />
+      x.__setattr__('name', value) &lt;==&gt; x.name = value</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.__setattr__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="attr_query"></a><span class="summary-sig-name">attr_query</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Queries all attributes of *this* entity using the DB.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.attr_query">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_itemize_attrs"></a><span class="summary-sig-name">_itemize_attrs</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">attrlist</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver._itemize_attrs">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="clusto.drivers.base.driver.Driver-class.html#attrs" class="summary-sig-name">attrs</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Return attributes for this entity.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.attrs">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="attr_values"></a><span class="summary-sig-name">attr_values</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Return the values of the attributes that match the given arguments</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.attr_values">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="clusto.drivers.base.driver.Driver-class.html#attr_value" class="summary-sig-name">attr_value</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Return a single value for the given arguments or the default if none exist</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.attr_value">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="clusto.drivers.base.driver.Driver-class.html#references" class="summary-sig-name">references</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Return the references to this Thing.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.references">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="clusto.drivers.base.driver.Driver-class.html#referencers" class="summary-sig-name">referencers</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Return the Things that reference _this_ Thing.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.referencers">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="attr_keys"></a><span class="summary-sig-name">attr_keys</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.attr_keys">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="attr_key_tuples"></a><span class="summary-sig-name">attr_key_tuples</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.attr_key_tuples">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="attr_items"></a><span class="summary-sig-name">attr_items</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.attr_items">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="clusto.drivers.base.driver.Driver-class.html#add_attr" class="summary-sig-name">add_attr</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">key</span>,
+        <span class="summary-sig-arg">value</span>=<span class="summary-sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>,
+        <span class="summary-sig-arg">number</span>=<span class="summary-sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>,
+        <span class="summary-sig-arg">subkey</span>=<span class="summary-sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>)</span><br />
+      add a key/value to the list of attributes</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.add_attr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="del_attrs"></a><span class="summary-sig-name">del_attrs</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      delete attribute with the given key and value optionally value also</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.del_attrs">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_attr"></a><span class="summary-sig-name">set_attr</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">key</span>,
+        <span class="summary-sig-arg">value</span>,
+        <span class="summary-sig-arg">number</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">subkey</span>=<span class="summary-sig-default">None</span>)</span><br />
+      replaces all attributes with the given key</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.set_attr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="expire"></a><span class="summary-sig-name">expire</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Expires the memcache value (if using memcache) of this object</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.expire">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="has_attr"></a><span class="summary-sig-name">has_attr</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      return True if this list has an attribute with the given key</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.has_attr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="clusto.drivers.base.driver.Driver-class.html#insert" class="summary-sig-name">insert</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">thing</span>)</span><br />
+      Insert the given Enity or Driver into this Entity.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.insert">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="clusto.drivers.base.driver.Driver-class.html#remove" class="summary-sig-name">remove</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">thing</span>)</span><br />
+      Remove the given Entity or Driver from this Entity.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.remove">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="content_attrs"></a><span class="summary-sig-name">content_attrs</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Return the attributes referring to this Thing's contents</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.content_attrs">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="clusto.drivers.base.driver.Driver-class.html#contents" class="summary-sig-name">contents</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Return the contents of this Entity.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.contents">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="parents"></a><span class="summary-sig-name">parents</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Return a list of Things that contain _this_ Thing.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.parents">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="clusto.drivers.base.driver.Driver-class.html#siblings" class="summary-sig-name">siblings</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">parent_filter</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">parent_kwargs</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">additional_pools</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Return a list of Things that have the same parents as me.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.siblings">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS METHODS ==================== -->
+<a name="section-ClassMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="clusto.drivers.base.driver.Driver-class.html#ensure_driver" class="summary-sig-name">ensure_driver</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">obj</span>,
+        <span class="summary-sig-arg">msg</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Ensure that the given argument is a Driver.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.ensure_driver">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="do_attr_query"></a><span class="summary-sig-name">do_attr_query</span>(<span class="summary-sig-arg">cls</span>,
+        <span class="summary-sig-arg">key</span>=<span class="summary-sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>,
+        <span class="summary-sig-arg">value</span>=<span class="summary-sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>,
+        <span class="summary-sig-arg">number</span>=<span class="summary-sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>,
+        <span class="summary-sig-arg">subkey</span>=<span class="summary-sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>,
+        <span class="summary-sig-arg">ignore_hidden</span>=<span class="summary-sig-default">True</span>,
+        <span class="summary-sig-arg">sort_by_keys</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">glob</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">count</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">querybase</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">return_query</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">entity</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Does queries against all Attributes using the DB.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.do_attr_query">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="clusto.drivers.base.driver.Driver-class.html#attr_filter" class="summary-sig-name">attr_filter</a>(<span class="summary-sig-arg">cls</span>,
+        <span class="summary-sig-arg">attrlist</span>,
+        <span class="summary-sig-arg">key</span>=<span class="summary-sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>,
+        <span class="summary-sig-arg">value</span>=<span class="summary-sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>,
+        <span class="summary-sig-arg">number</span>=<span class="summary-sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>,
+        <span class="summary-sig-arg">subkey</span>=<span class="summary-sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>,
+        <span class="summary-sig-arg">ignore_hidden</span>=<span class="summary-sig-default">True</span>,
+        <span class="summary-sig-arg">sort_by_keys</span>=<span class="summary-sig-default">True</span>,
+        <span class="summary-sig-arg">regex</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">clusto_types</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">clusto_drivers</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Filter attribute lists.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.attr_filter">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_by_attr"></a><span class="summary-sig-name">get_by_attr</span>(<span class="summary-sig-arg">cls</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Get list of Drivers that have by attributes search</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.get_by_attr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== STATIC METHODS ==================== -->
+<a name="section-StaticMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Static Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-StaticMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">a new object with type S, a subtype of T</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="clusto.drivers.base.driver.Driver-class.html#__new__" class="summary-sig-name">__new__</a>(<span class="summary-sig-arg">cls</span>,
+        <span class="summary-sig-arg">name_driver_entity</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.__new__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_clusto_type"></a><span class="summary-name">_clusto_type</span> = <code title="'generic'"><code class="variable-quote">'</code><code class="variable-string">generic</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_driver_name"></a><span class="summary-name">_driver_name</span> = <code title="'entity'"><code class="variable-quote">'</code><code class="variable-string">entity</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_properties"></a><span class="summary-name">_properties</span> = <code title="{}"><code class="variable-group">{</code><code class="variable-group">}</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="clusto.drivers.base.driver.Driver-class.html#type" class="summary-name">type</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="clusto.drivers.base.driver.Driver-class.html#driver" class="summary-name">driver</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="clusto.drivers.base.driver.Driver-class.html#name" class="summary-name">name</a>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__new__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__new__</span>(<span class="sig-arg">cls</span>,
+        <span class="sig-arg">name_driver_entity</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+    <br /><em class="fname">Static Method</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.__new__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Returns: a new object with type S, a subtype of T</dt>
+    <dt>Overrides:
+        object.__new__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">name_driver_entity</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>x.__init__(...) initializes x; see x.__class__.__doc__ for 
+  signature</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__repr__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__repr__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Representation operator)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.__repr__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>repr(x)</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__repr__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__hash__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__hash__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Hashing function)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.__hash__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>hash(x)</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__hash__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__setattr__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__setattr__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">name</span>,
+        <span class="sig-arg">value</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.__setattr__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>x.__setattr__('name', value) &lt;==&gt; x.name = value</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__setattr__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="ensure_driver"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">ensure_driver</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">obj</span>,
+        <span class="sig-arg">msg</span>=<span class="sig-default">None</span>)</span>
+    <br /><em class="fname">Class Method</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.ensure_driver">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Ensure that the given argument is a Driver.</p>
+  <p>If the object is an Entity it will be turned into a Driver and then 
+  returned.  If it's a Driver it will be returned unaffected.  Otherwise a 
+  TypeError is raised with either a generic or given message.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="attr_filter"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">attr_filter</span>(<span class="sig-arg">cls</span>,
+        <span class="sig-arg">attrlist</span>,
+        <span class="sig-arg">key</span>=<span class="sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>,
+        <span class="sig-arg">value</span>=<span class="sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>,
+        <span class="sig-arg">number</span>=<span class="sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>,
+        <span class="sig-arg">subkey</span>=<span class="sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>,
+        <span class="sig-arg">ignore_hidden</span>=<span class="sig-default">True</span>,
+        <span class="sig-arg">sort_by_keys</span>=<span class="sig-default">True</span>,
+        <span class="sig-arg">regex</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">clusto_types</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">clusto_drivers</span>=<span class="sig-default">None</span>)</span>
+    <br /><em class="fname">Class Method</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.attr_filter">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Filter attribute lists. (Uses generator comprehension)</p>
+  <p>Given a list of Attributes filter them based on exact matches of key, 
+  number, subkey, value.</p>
+  <p>There are some special cases:</p>
+  <p>if number is True then the number variable must be non-null. if number
+  is False then the number variable must be null.</p>
+  <p>if ignore_hidden is True (the default) then filter out keys that begin
+  with an underscore, if false don't filter out such keys.  If you specify 
+  a key that begins with an underscore as one of the arguments then 
+  ignore_hidden is assumed to be False.</p>
+  <p>if sort_by_keys is True then attributes are returned sorted by keys, 
+  otherwise their order is undefined.</p>
+  <p>if regex is True then treat the key, subkey, and value query 
+  parameters as regular expressions.</p>
+  <p>clusto_types is a list of types that the entities referenced by 
+  relation attributes must match.</p>
+  <p>clusto_drivers is a list of drivers that the entities referenced by 
+  relation attributes must match.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="attrs"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">attrs</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.attrs">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return attributes for this entity.</p>
+  <p>(filters whole attribute list as opposed to querying the db 
+  directly)</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="attr_value"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">attr_value</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.attr_value">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Return a single value for the given arguments or the default if none exist
+
+extra parameters:
+  default - the default value to return if none exist
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="references"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">references</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.references">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return the references to this Thing. The references are 
+  attributes.</p>
+  <p>Accepts the same arguments as attrs().</p>
+  <p>The semantics of clusto_types and clusto_drivers changes to match the 
+  clusto_type or clusto_driver of the Entity that owns the attribute as 
+  opposed to the Entity the attribute refers to.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="referencers"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">referencers</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.referencers">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return the Things that reference _this_ Thing.</p>
+  <p>Accepts the same arguments as references() but adds an instanceOf 
+  filter argument.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="add_attr"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">add_attr</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">key</span>,
+        <span class="sig-arg">value</span>=<span class="sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>,
+        <span class="sig-arg">number</span>=<span class="sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>,
+        <span class="sig-arg">subkey</span>=<span class="sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.add_attr">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>add a key/value to the list of attributes</p>
+  <p>if number is True, create an attribute with the next available 
+  otherwise number just gets passed to the Attribute constructor so it can 
+  be an integer or an sqlalchemy expression</p>
+  <p>An optional subkey can also be specified. Subkeys don't affect 
+  numbering by default.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="insert"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">insert</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">thing</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.insert">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Insert the given Enity or Driver into this Entity.  Such that:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>A.insert(B)
+<span class="py-prompt">&gt;&gt;&gt; </span>(B <span class="py-keyword">in</span> A)
+<span class="py-output">True</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="remove"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">remove</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">thing</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.remove">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Remove the given Entity or Driver from this Entity. Such that:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>A.insert(B)
+<span class="py-prompt">&gt;&gt;&gt; </span>B <span class="py-keyword">in</span> A
+<span class="py-output">True</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>A.remove(B)
+<span class="py-prompt">&gt;&gt;&gt; </span>B <span class="py-keyword">in</span> A
+<span class="py-output">False</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="contents"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">contents</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.contents">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return the contents of this Entity.  Such that:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>A.insert(B)
+<span class="py-prompt">&gt;&gt;&gt; </span>A.insert(C)
+<span class="py-prompt">&gt;&gt;&gt; </span>A.contents()
+<span class="py-output">[B, C]</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="siblings"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">siblings</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">parent_filter</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">parent_kwargs</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">additional_pools</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="clusto.drivers.base.driver-pysrc.html#Driver.siblings">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Return a list of Things that have the same parents as me.
+
+parameters:
+   parent_filter - a function used to filter out unwanted parents
+   parent_kwargs - arguments to be passed to self.parents()
+   additional_pools - a list of additional pools to use as sibling parents
+   **kwargs - arguments to clusto.get_from_pools()
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== PROPERTY DETAILS ==================== -->
+<a name="section-PropertyDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Property Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-PropertyDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="type"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">type</h3>
+  
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.type(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="driver"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">driver</h3>
+  
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.driver(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="name"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">name</h3>
+  
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.name(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="clusto-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Mar  8 10:47:18 2011
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

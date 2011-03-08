@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>clusto.services.snmp</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="clusto-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="clusto-module.html">Package&nbsp;clusto</a> ::
+        <a href="clusto.services-module.html">Package&nbsp;services</a> ::
+        Module&nbsp;snmp
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="clusto.services.snmp-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="clusto.services.snmp-module.html">Module clusto.services.snmp</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#!/usr/bin/env python</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">socket</tt> <tt class="py-keyword">import</tt> <tt class="py-name">socket</tt><tt class="py-op">,</tt> <tt id="link-0" class="py-name" targets="Variable clusto.test.drivers.categories'.AF_INET=clusto.test.drivers.categories%27-module.html#AF_INET,Variable clusto.test.drivers.resourcemanagers'.AF_INET=clusto.test.drivers.resourcemanagers%27-module.html#AF_INET"><a title="clusto.test.drivers.categories'.AF_INET
+clusto.test.drivers.resourcemanagers'.AF_INET" class="py-name" href="#" onclick="return doclink('link-0', 'AF_INET', 'link-0');">AF_INET</a></tt><tt class="py-op">,</tt> <tt id="link-1" class="py-name" targets="Variable clusto.test.drivers.categories'.SOCK_DGRAM=clusto.test.drivers.categories%27-module.html#SOCK_DGRAM,Variable clusto.test.drivers.resourcemanagers'.SOCK_DGRAM=clusto.test.drivers.resourcemanagers%27-module.html#SOCK_DGRAM"><a title="clusto.test.drivers.categories'.SOCK_DGRAM
+clusto.test.drivers.resourcemanagers'.SOCK_DGRAM" class="py-name" href="#" onclick="return doclink('link-1', 'SOCK_DGRAM', 'link-1');">SOCK_DGRAM</a></tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">traceback</tt> <tt class="py-keyword">import</tt> <tt class="py-name">format_exc</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">time</tt> <tt class="py-keyword">import</tt> <tt class="py-name">strftime</tt><tt class="py-op">,</tt> <tt class="py-name">time</tt><tt class="py-op">,</tt> <tt class="py-name">localtime</tt><tt class="py-op">,</tt> <tt class="py-name">sleep</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">struct</tt> <tt class="py-keyword">import</tt> <tt class="py-name">unpack</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sys</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">logging</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name" targets="Package clusto=clusto-module.html"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-2', 'clusto', 'link-2');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Package clusto.services=clusto.services-module.html"><a title="clusto.services" class="py-name" href="#" onclick="return doclink('link-3', 'services', 'link-3');">services</a></tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Module clusto.services.config=clusto.services.config-module.html,Variable clusto.services.config.config=clusto.services.config-module.html#config"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-4', 'config', 'link-4');">config</a></tt> <tt class="py-keyword">import</tt> <tt id="link-5" class="py-name" targets="Function clusto.services.config.conf()=clusto.services.config-module.html#conf"><a title="clusto.services.config.conf" class="py-name" href="#" onclick="return doclink('link-5', 'conf', 'link-5');">conf</a></tt><tt class="py-op">,</tt> <tt id="link-6" class="py-name" targets="Function clusto.services.config.get_logger()=clusto.services.config-module.html#get_logger"><a title="clusto.services.config.get_logger" class="py-name" href="#" onclick="return doclink('link-6', 'get_logger', 'link-6');">get_logger</a></tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt id="link-7" class="py-name" targets="Variable clusto.services.dhcp.log=clusto.services.dhcp-module.html#log,Variable clusto.services.http.log=clusto.services.http-module.html#log,Variable clusto.services.snmp.log=clusto.services.snmp-module.html#log"><a title="clusto.services.dhcp.log
+clusto.services.http.log
+clusto.services.snmp.log" class="py-name" href="#" onclick="return doclink('link-7', 'log', 'link-7');">log</a></tt> <tt class="py-op">=</tt> <tt id="link-8" class="py-name"><a title="clusto.services.config.get_logger" class="py-name" href="#" onclick="return doclink('link-8', 'get_logger', 'link-6');">get_logger</a></tt><tt class="py-op">(</tt><tt class="py-string">'clusto.snmp'</tt><tt class="py-op">,</tt> <tt class="py-string">'INFO'</tt><tt class="py-op">)</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">logging</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt id="link-9" class="py-name" targets="Variable clusto.drivers.devices.common.snmpmixin.runtime=clusto.drivers.devices.common.snmpmixin-module.html#runtime,Variable clusto.services.dhcp.runtime=clusto.services.dhcp-module.html#runtime,Variable clusto.services.snmp.runtime=clusto.services.snmp-module.html#runtime,Variable clusto.test.drivers.categories'.runtime=clusto.test.drivers.categories%27-module.html#runtime,Variable clusto.test.drivers.resourcemanagers'.runtime=clusto.test.drivers.resourcemanagers%27-module.html#runtime"><a title="clusto.drivers.devices.common.snmpmixin.runtime
+clusto.services.dhcp.runtime
+clusto.services.snmp.runtime
+clusto.test.drivers.categories'.runtime
+clusto.test.drivers.resourcemanagers'.runtime" class="py-name" href="#" onclick="return doclink('link-9', 'runtime', 'link-9');">runtime</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-string">'scapy.runtime'</tt><tt class="py-op">)</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt id="link-10" class="py-name"><a title="clusto.drivers.devices.common.snmpmixin.runtime
+clusto.services.dhcp.runtime
+clusto.services.snmp.runtime
+clusto.test.drivers.categories'.runtime
+clusto.test.drivers.resourcemanagers'.runtime" class="py-name" href="#" onclick="return doclink('link-10', 'runtime', 'link-9');">runtime</a></tt><tt class="py-op">.</tt><tt class="py-name">setLevel</tt><tt class="py-op">(</tt><tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">ERROR</tt><tt class="py-op">)</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt id="link-11" class="py-name" targets="Variable clusto.drivers.devices.common.snmpmixin.loading=clusto.drivers.devices.common.snmpmixin-module.html#loading,Variable clusto.services.dhcp.loading=clusto.services.dhcp-module.html#loading,Variable clusto.services.snmp.loading=clusto.services.snmp-module.html#loading,Variable clusto.test.drivers.categories'.loading=clusto.test.drivers.categories%27-module.html#loading,Variable clusto.test.drivers.resourcemanagers'.loading=clusto.test.drivers.resourcemanagers%27-module.html#loading"><a title="clusto.drivers.devices.common.snmpmixin.loading
+clusto.services.dhcp.loading
+clusto.services.snmp.loading
+clusto.test.drivers.categories'.loading
+clusto.test.drivers.resourcemanagers'.loading" class="py-name" href="#" onclick="return doclink('link-11', 'loading', 'link-11');">loading</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-string">'scapy.loading'</tt><tt class="py-op">)</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt id="link-12" class="py-name"><a title="clusto.drivers.devices.common.snmpmixin.loading
+clusto.services.dhcp.loading
+clusto.services.snmp.loading
+clusto.test.drivers.categories'.loading
+clusto.test.drivers.resourcemanagers'.loading" class="py-name" href="#" onclick="return doclink('link-12', 'loading', 'link-11');">loading</a></tt><tt class="py-op">.</tt><tt class="py-name">setLevel</tt><tt class="py-op">(</tt><tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">ERROR</tt><tt class="py-op">)</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">scapy</tt><tt class="py-op">.</tt><tt class="py-name">all</tt> <tt class="py-keyword">import</tt> <tt class="py-name">SNMP</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-13" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-13', 'clusto', 'link-2');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Package clusto.drivers=clusto.drivers-module.html,Package clusto.test.drivers=clusto.test.drivers-module.html"><a title="clusto.drivers
+clusto.test.drivers" class="py-name" href="#" onclick="return doclink('link-14', 'drivers', 'link-14');">drivers</a></tt> <tt class="py-keyword">import</tt> <tt id="link-15" class="py-name" targets="Class clusto.drivers.resourcemanagers.ipmanager.IPManager=clusto.drivers.resourcemanagers.ipmanager.IPManager-class.html"><a title="clusto.drivers.resourcemanagers.ipmanager.IPManager" class="py-name" href="#" onclick="return doclink('link-15', 'IPManager', 'link-15');">IPManager</a></tt><tt class="py-op">,</tt> <tt id="link-16" class="py-name" targets="Class clusto.drivers.devices.servers.penguincomputing.PenguinServer=clusto.drivers.devices.servers.penguincomputing.PenguinServer-class.html"><a title="clusto.drivers.devices.servers.penguincomputing.PenguinServer" class="py-name" href="#" onclick="return doclink('link-16', 'PenguinServer', 'link-16');">PenguinServer</a></tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-17" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-17', 'clusto', 'link-2');">clusto</a></tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Method clusto.drivers.base.driver.Driver.insert()=clusto.drivers.base.driver.Driver-class.html#insert,Method clusto.drivers.categories.pool.ExclusivePool.insert()=clusto.drivers.categories.pool.ExclusivePool-class.html#insert,Method clusto.drivers.categories.pool.Pool.insert()=clusto.drivers.categories.pool.Pool-class.html#insert,Method clusto.drivers.categories.pool.UniquePool.insert()=clusto.drivers.categories.pool.UniquePool-class.html#insert,Method clusto.drivers.locations.racks.basicrack.BasicRack.insert()=clusto.drivers.locations.racks.basicrack.BasicRack-class.html#insert,Method clusto.drivers.resourcemanagers.vmmanager.VMManager.insert()=clusto.drivers.resourcemanagers.vmmanager.VMManager-class.html#insert,Method clusto.services.http.EntityAPI.insert()=clusto.services.http.EntityAPI-class.html#insert,Method clusto.services.http.RackAPI.insert()=clusto.services.http.RackAPI-class.html#insert"><a title="clusto.drivers.base.driver.Driver.insert
+clusto.drivers.categories.pool.ExclusivePool.insert
+clusto.drivers.categories.pool.Pool.insert
+clusto.drivers.categories.pool.UniquePool.insert
+clusto.drivers.locations.racks.basicrack.BasicRack.insert
+clusto.drivers.resourcemanagers.vmmanager.VMManager.insert
+clusto.services.http.EntityAPI.insert
+clusto.services.http.RackAPI.insert" class="py-name" href="#" onclick="return doclink('link-18', 'insert', 'link-18');">insert</a></tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-string">'/var/lib/clusto'</tt><tt class="py-op">)</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">rackfactory</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"> </tt>
+<a name="update_clusto"></a><div id="update_clusto-def"><a name="L27"></a><tt class="py-lineno"> 27</tt> <a class="py-toggle" href="#" id="update_clusto-toggle" onclick="return toggle('update_clusto');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="clusto.services.snmp-module.html#update_clusto">update_clusto</a><tt class="py-op">(</tt><tt class="py-param">trap</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="update_clusto-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="update_clusto-expanded"><a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">    <tt class="py-name">ts</tt> <tt class="py-op">=</tt> <tt class="py-name">strftime</tt><tt class="py-op">(</tt><tt class="py-string">'[%Y-%m-%d %H:%M:%S]'</tt><tt class="py-op">)</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">trap</tt><tt class="py-op">[</tt><tt class="py-string">'operation'</tt><tt class="py-op">]</tt> <tt class="py-op">!=</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">trap</tt><tt class="py-op">[</tt><tt class="py-string">'mac'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">startswith</tt><tt class="py-op">(</tt><tt class="py-string">'00'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">    <tt class="py-name">switch</tt> <tt class="py-op">=</tt> <tt id="link-19" class="py-name"><a title="clusto.drivers.resourcemanagers.ipmanager.IPManager" class="py-name" href="#" onclick="return doclink('link-19', 'IPManager', 'link-15');">IPManager</a></tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Class Method clusto.drivers.resourcemanagers.ipmanager.IPManager.get_devices()=clusto.drivers.resourcemanagers.ipmanager.IPManager-class.html#get_devices"><a title="clusto.drivers.resourcemanagers.ipmanager.IPManager.get_devices" class="py-name" href="#" onclick="return doclink('link-20', 'get_devices', 'link-20');">get_devices</a></tt><tt class="py-op">(</tt><tt class="py-name">trap</tt><tt class="py-op">[</tt><tt class="py-string">'switch'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">switch</tt><tt class="py-op">:</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt id="link-21" class="py-name"><a title="clusto.services.dhcp.log
+clusto.services.http.log
+clusto.services.snmp.log" class="py-name" href="#" onclick="return doclink('link-21', 'log', 'link-7');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-string">'Unknown trap source: %s'</tt> <tt class="py-op">%</tt> <tt class="py-name">trap</tt><tt class="py-op">[</tt><tt class="py-string">'switch'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-name">switch</tt> <tt class="py-op">=</tt> <tt class="py-name">switch</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">switch</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Method clusto.drivers.base.driver.Driver.attrs()=clusto.drivers.base.driver.Driver-class.html#attrs,Variable clusto.schema.Entity.attrs=clusto.schema.Entity-class.html#attrs,Method clusto.services.http.EntityAPI.attrs()=clusto.services.http.EntityAPI-class.html#attrs"><a title="clusto.drivers.base.driver.Driver.attrs
+clusto.schema.Entity.attrs
+clusto.services.http.EntityAPI.attrs" class="py-name" href="#" onclick="return doclink('link-22', 'attrs', 'link-22');">attrs</a></tt><tt class="py-op">(</tt><tt id="link-23" class="py-name" targets="Variable clusto.schema.Attribute.key=clusto.schema.Attribute-class.html#key"><a title="clusto.schema.Attribute.key" class="py-name" href="#" onclick="return doclink('link-23', 'key', 'link-23');">key</a></tt><tt class="py-op">=</tt><tt class="py-string">'snmp'</tt><tt class="py-op">,</tt> <tt id="link-24" class="py-name" targets="Variable clusto.schema.Attribute.subkey=clusto.schema.Attribute-class.html#subkey"><a title="clusto.schema.Attribute.subkey" class="py-name" href="#" onclick="return doclink('link-24', 'subkey', 'link-24');">subkey</a></tt><tt class="py-op">=</tt><tt class="py-string">'discovery'</tt><tt class="py-op">,</tt> <tt id="link-25" class="py-name" targets="Variable clusto.schema.Attribute.value=clusto.schema.Attribute-class.html#value,Variable clusto.schema.Counter.value=clusto.schema.Counter-class.html#value"><a title="clusto.schema.Attribute.value
+clusto.schema.Counter.value" class="py-name" href="#" onclick="return doclink('link-25', 'value', 'link-25');">value</a></tt><tt class="py-op">=</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-name">merge_container_attrs</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt id="link-26" class="py-name"><a title="clusto.services.dhcp.log
+clusto.services.http.log
+clusto.services.snmp.log" class="py-name" href="#" onclick="return doclink('link-26', 'log', 'link-7');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'key=snmp, subkey=discovery for %s not set to 1, ignoring trap'</tt> <tt class="py-op">%</tt> <tt class="py-name">switch</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name" targets="Variable clusto.drivers.base.driver.Driver.name=clusto.drivers.base.driver.Driver-class.html#name,Variable clusto.schema.Entity.name=clusto.schema.Entity-class.html#name"><a title="clusto.drivers.base.driver.Driver.name
+clusto.schema.Entity.name" class="py-name" href="#" onclick="return doclink('link-27', 'name', 'link-27');">name</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">    <tt class="py-name">rack</tt> <tt class="py-op">=</tt> <tt class="py-name">switch</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name" targets="Method clusto.drivers.base.driver.Driver.parents()=clusto.drivers.base.driver.Driver-class.html#parents"><a title="clusto.drivers.base.driver.Driver.parents" class="py-name" href="#" onclick="return doclink('link-28', 'parents', 'link-28');">parents</a></tt><tt class="py-op">(</tt><tt class="py-name">clusto_types</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-string">'rack'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-name">factory</tt> <tt class="py-op">=</tt> <tt class="py-name">rackfactory</tt><tt class="py-op">.</tt><tt class="py-name">get_factory</tt><tt class="py-op">(</tt><tt class="py-name">rack</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="clusto.drivers.base.driver.Driver.name
+clusto.schema.Entity.name" class="py-name" href="#" onclick="return doclink('link-29', 'name', 'link-27');">name</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">factory</tt><tt class="py-op">:</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">            <tt id="link-30" class="py-name"><a title="clusto.services.dhcp.log
+clusto.services.http.log
+clusto.services.snmp.log" class="py-name" href="#" onclick="return doclink('link-30', 'log', 'link-7');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-string">'Unable to locate rack factory for %s'</tt> <tt class="py-op">%</tt> <tt class="py-name">rack</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name"><a title="clusto.drivers.base.driver.Driver.name
+clusto.schema.Entity.name" class="py-name" href="#" onclick="return doclink('link-31', 'name', 'link-27');">name</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt><tt class="py-op">:</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">        <tt id="link-32" class="py-name"><a title="clusto.services.dhcp.log
+clusto.services.http.log
+clusto.services.snmp.log" class="py-name" href="#" onclick="return doclink('link-32', 'log', 'link-7');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">error</tt><tt class="py-op">(</tt><tt class="py-name">format_exc</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">    <tt class="py-name">server</tt> <tt class="py-op">=</tt> <tt class="py-name">switch</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name" targets="Method clusto.drivers.devices.common.portmixin.PortMixin.get_connected()=clusto.drivers.devices.common.portmixin.PortMixin-class.html#get_connected"><a title="clusto.drivers.devices.common.portmixin.PortMixin.get_connected" class="py-name" href="#" onclick="return doclink('link-33', 'get_connected', 'link-33');">get_connected</a></tt><tt class="py-op">(</tt><tt class="py-string">'nic-eth'</tt><tt class="py-op">,</tt> <tt class="py-name">trap</tt><tt class="py-op">[</tt><tt class="py-string">'port'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">server</tt><tt class="py-op">:</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">        <tt class="py-name">servernames</tt> <tt class="py-op">=</tt> <tt id="link-34" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-34', 'clusto', 'link-2');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-35" class="py-name" targets="Function clusto.get_by_name()=clusto-module.html#get_by_name,Class Method clusto.services.http.QueryAPI.get_by_name()=clusto.services.http.QueryAPI-class.html#get_by_name"><a title="clusto.get_by_name
+clusto.services.http.QueryAPI.get_by_name" class="py-name" href="#" onclick="return doclink('link-35', 'get_by_name', 'link-35');">get_by_name</a></tt><tt class="py-op">(</tt><tt class="py-string">'servernames'</tt><tt class="py-op">)</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt id="link-36" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-36', 'clusto', 'link-2');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-37" class="py-name" targets="Variable clusto.schema.SESSION=clusto.schema-module.html#SESSION,Variable clusto.test.drivers.categories'.SESSION=clusto.test.drivers.categories%27-module.html#SESSION,Variable clusto.test.drivers.resourcemanagers'.SESSION=clusto.test.drivers.resourcemanagers%27-module.html#SESSION"><a title="clusto.schema.SESSION
+clusto.test.drivers.categories'.SESSION
+clusto.test.drivers.resourcemanagers'.SESSION" class="py-name" href="#" onclick="return doclink('link-37', 'SESSION', 'link-37');">SESSION</a></tt><tt class="py-op">.</tt><tt class="py-name">clusto_description</tt> <tt class="py-op">=</tt> <tt class="py-string">'SNMP allocate new server'</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt id="link-38" class="py-name" targets="Module clusto.drivers.base.driver=clusto.drivers.base.driver-module.html,Variable clusto.drivers.base.driver.Driver.driver=clusto.drivers.base.driver.Driver-class.html#driver,Variable clusto.schema.Entity.driver=clusto.schema.Entity-class.html#driver"><a title="clusto.drivers.base.driver
+clusto.drivers.base.driver.Driver.driver
+clusto.schema.Entity.driver" class="py-name" href="#" onclick="return doclink('link-38', 'driver', 'link-38');">driver</a></tt> <tt class="py-op">=</tt> <tt class="py-name">factory</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name" targets="Function clusto.get_driver()=clusto-module.html#get_driver"><a title="clusto.get_driver" class="py-name" href="#" onclick="return doclink('link-39', 'get_driver', 'link-39');">get_driver</a></tt><tt class="py-op">(</tt><tt class="py-name">trap</tt><tt class="py-op">[</tt><tt class="py-string">'port'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt class="py-name">server</tt> <tt class="py-op">=</tt> <tt class="py-name">servernames</tt><tt class="py-op">.</tt><tt id="link-40" class="py-name" targets="Method clusto.drivers.base.resourcemanager.ResourceManager.allocate()=clusto.drivers.base.resourcemanager.ResourceManager-class.html#allocate,Method clusto.drivers.resourcemanagers.simplenamemanager.SimpleEntityNameManager.allocate()=clusto.drivers.resourcemanagers.simplenamemanager.SimpleEntityNameManager-class.html#allocate,Method clusto.drivers.resourcemanagers.vmmanager.VMManager.allocate()=clusto.drivers.resourcemanagers.vmmanager.VMManager-class.html#allocate,Method clusto.services.http.ResourceAPI.allocate()=clusto.services.http.ResourceAPI-class.html#allocate"><a title="clusto.drivers.base.resourcemanager.ResourceManager.allocate
+clusto.drivers.resourcemanagers.simplenamemanager.SimpleEntityNameManager.allocate
+clusto.drivers.resourcemanagers.vmmanager.VMManager.allocate
+clusto.services.http.ResourceAPI.allocate" class="py-name" href="#" onclick="return doclink('link-40', 'allocate', 'link-40');">allocate</a></tt><tt class="py-op">(</tt><tt id="link-41" class="py-name"><a title="clusto.drivers.base.driver
+clusto.drivers.base.driver.Driver.driver
+clusto.schema.Entity.driver" class="py-name" href="#" onclick="return doclink('link-41', 'driver', 'link-38');">driver</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">        <tt id="link-42" class="py-name"><a title="clusto.services.dhcp.log
+clusto.services.http.log
+clusto.services.snmp.log" class="py-name" href="#" onclick="return doclink('link-42', 'log', 'link-7');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Created new %s on %s port %s: %s'</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt id="link-43" class="py-name"><a title="clusto.drivers.base.driver
+clusto.drivers.base.driver.Driver.driver
+clusto.schema.Entity.driver" class="py-name" href="#" onclick="return doclink('link-43', 'driver', 'link-38');">driver</a></tt><tt class="py-op">.</tt><tt class="py-name">__name__</tt><tt class="py-op">,</tt> <tt class="py-name">trap</tt><tt class="py-op">[</tt><tt class="py-string">'switch'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">trap</tt><tt class="py-op">[</tt><tt class="py-string">'port'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">server</tt><tt class="py-op">.</tt><tt id="link-44" class="py-name"><a title="clusto.drivers.base.driver.Driver.name
+clusto.schema.Entity.name" class="py-name" href="#" onclick="return doclink('link-44', 'name', 'link-27');">name</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt id="link-45" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-45', 'clusto', 'link-2');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-46" class="py-name" targets="Function clusto.begin_transaction()=clusto-module.html#begin_transaction"><a title="clusto.begin_transaction" class="py-name" href="#" onclick="return doclink('link-46', 'begin_transaction', 'link-46');">begin_transaction</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">trap</tt><tt class="py-op">[</tt><tt class="py-string">'mac'</tt><tt class="py-op">]</tt> <tt class="py-keyword">in</tt> <tt class="py-name">server</tt><tt class="py-op">.</tt><tt id="link-47" class="py-name" targets="Method clusto.drivers.base.driver.Driver.attr_values()=clusto.drivers.base.driver.Driver-class.html#attr_values"><a title="clusto.drivers.base.driver.Driver.attr_values" class="py-name" href="#" onclick="return doclink('link-47', 'attr_values', 'link-47');">attr_values</a></tt><tt class="py-op">(</tt><tt id="link-48" class="py-name"><a title="clusto.schema.Attribute.key" class="py-name" href="#" onclick="return doclink('link-48', 'key', 'link-23');">key</a></tt><tt class="py-op">=</tt><tt class="py-string">'bootstrap'</tt><tt class="py-op">,</tt> <tt id="link-49" class="py-name"><a title="clusto.schema.Attribute.subkey" class="py-name" href="#" onclick="return doclink('link-49', 'subkey', 'link-24');">subkey</a></tt><tt class="py-op">=</tt><tt class="py-string">'mac'</tt><tt class="py-op">,</tt> <tt id="link-50" class="py-name"><a title="clusto.schema.Attribute.value
+clusto.schema.Counter.value" class="py-name" href="#" onclick="return doclink('link-50', 'value', 'link-25');">value</a></tt><tt class="py-op">=</tt><tt class="py-name">trap</tt><tt class="py-op">[</tt><tt class="py-string">'mac'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">            <tt id="link-51" class="py-name"><a title="clusto.services.dhcp.log
+clusto.services.http.log
+clusto.services.snmp.log" class="py-name" href="#" onclick="return doclink('link-51', 'log', 'link-7');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'Adding bootstrap mac to'</tt><tt class="py-op">,</tt> <tt class="py-name">server</tt><tt class="py-op">.</tt><tt id="link-52" class="py-name"><a title="clusto.drivers.base.driver.Driver.name
+clusto.schema.Entity.name" class="py-name" href="#" onclick="return doclink('link-52', 'name', 'link-27');">name</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">            <tt class="py-name">server</tt><tt class="py-op">.</tt><tt id="link-53" class="py-name" targets="Method clusto.drivers.base.driver.Driver.add_attr()=clusto.drivers.base.driver.Driver-class.html#add_attr,Method clusto.schema.Entity.add_attr()=clusto.schema.Entity-class.html#add_attr"><a title="clusto.drivers.base.driver.Driver.add_attr
+clusto.schema.Entity.add_attr" class="py-name" href="#" onclick="return doclink('link-53', 'add_attr', 'link-53');">add_attr</a></tt><tt class="py-op">(</tt><tt id="link-54" class="py-name"><a title="clusto.schema.Attribute.key" class="py-name" href="#" onclick="return doclink('link-54', 'key', 'link-23');">key</a></tt><tt class="py-op">=</tt><tt class="py-string">'bootstrap'</tt><tt class="py-op">,</tt> <tt id="link-55" class="py-name"><a title="clusto.schema.Attribute.subkey" class="py-name" href="#" onclick="return doclink('link-55', 'subkey', 'link-24');">subkey</a></tt><tt class="py-op">=</tt><tt class="py-string">'mac'</tt><tt class="py-op">,</tt> <tt id="link-56" class="py-name"><a title="clusto.schema.Attribute.value
+clusto.schema.Counter.value" class="py-name" href="#" onclick="return doclink('link-56', 'value', 'link-25');">value</a></tt><tt class="py-op">=</tt><tt class="py-name">trap</tt><tt class="py-op">[</tt><tt class="py-string">'mac'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-name">factory</tt><tt class="py-op">.</tt><tt class="py-name">add_server</tt><tt class="py-op">(</tt><tt class="py-name">server</tt><tt class="py-op">,</tt> <tt class="py-name">trap</tt><tt class="py-op">[</tt><tt class="py-string">'port'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-name">switch</tt><tt class="py-op">.</tt><tt id="link-57" class="py-name" targets="Method clusto.drivers.devices.common.portmixin.PortMixin.set_port_attr()=clusto.drivers.devices.common.portmixin.PortMixin-class.html#set_port_attr,Method clusto.services.http.PortInfoAPI.set_port_attr()=clusto.services.http.PortInfoAPI-class.html#set_port_attr"><a title="clusto.drivers.devices.common.portmixin.PortMixin.set_port_attr
+clusto.services.http.PortInfoAPI.set_port_attr" class="py-name" href="#" onclick="return doclink('link-57', 'set_port_attr', 'link-57');">set_port_attr</a></tt><tt class="py-op">(</tt><tt class="py-string">'nic-eth'</tt><tt class="py-op">,</tt> <tt class="py-name">trap</tt><tt class="py-op">[</tt><tt class="py-string">'port'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-string">'vlan'</tt><tt class="py-op">,</tt> <tt class="py-name">trap</tt><tt class="py-op">[</tt><tt class="py-string">'vlan'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">        <tt id="link-58" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-58', 'clusto', 'link-2');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-59" class="py-name"><a title="clusto.schema.SESSION
+clusto.test.drivers.categories'.SESSION
+clusto.test.drivers.resourcemanagers'.SESSION" class="py-name" href="#" onclick="return doclink('link-59', 'SESSION', 'link-37');">SESSION</a></tt><tt class="py-op">.</tt><tt class="py-name">clusto_description</tt> <tt class="py-op">=</tt> <tt class="py-string">'SNMP update MAC and connections on %s'</tt> <tt class="py-op">%</tt> <tt class="py-name">server</tt><tt class="py-op">.</tt><tt id="link-60" class="py-name"><a title="clusto.drivers.base.driver.Driver.name
+clusto.schema.Entity.name" class="py-name" href="#" onclick="return doclink('link-60', 'name', 'link-27');">name</a></tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt id="link-61" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-61', 'clusto', 'link-2');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-62" class="py-name" targets="Function clusto.commit()=clusto-module.html#commit"><a title="clusto.commit" class="py-name" href="#" onclick="return doclink('link-62', 'commit', 'link-62');">commit</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt><tt class="py-op">:</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt id="link-63" class="py-name"><a title="clusto.services.dhcp.log
+clusto.services.http.log
+clusto.services.snmp.log" class="py-name" href="#" onclick="return doclink('link-63', 'log', 'link-7');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">error</tt><tt class="py-op">(</tt><tt class="py-name">format_exc</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">        <tt id="link-64" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-64', 'clusto', 'link-2');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-65" class="py-name" targets="Function clusto.rollback_transaction()=clusto-module.html#rollback_transaction"><a title="clusto.rollback_transaction" class="py-name" href="#" onclick="return doclink('link-65', 'rollback_transaction', 'link-65');">rollback_transaction</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">    <tt id="link-66" class="py-name"><a title="clusto.services.dhcp.log
+clusto.services.http.log
+clusto.services.snmp.log" class="py-name" href="#" onclick="return doclink('link-66', 'log', 'link-7');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-name">repr</tt><tt class="py-op">(</tt><tt class="py-name">trap</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"> </tt>
+<a name="trap_listen"></a><div id="trap_listen-def"><a name="L82"></a><tt class="py-lineno"> 82</tt> <a class="py-toggle" href="#" id="trap_listen-toggle" onclick="return toggle('trap_listen');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="clusto.services.snmp-module.html#trap_listen">trap_listen</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="trap_listen-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="trap_listen-expanded"><a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">    <tt class="py-name">sock</tt> <tt class="py-op">=</tt> <tt class="py-name">socket</tt><tt class="py-op">(</tt><tt id="link-67" class="py-name"><a title="clusto.test.drivers.categories'.AF_INET
+clusto.test.drivers.resourcemanagers'.AF_INET" class="py-name" href="#" onclick="return doclink('link-67', 'AF_INET', 'link-0');">AF_INET</a></tt><tt class="py-op">,</tt> <tt id="link-68" class="py-name"><a title="clusto.test.drivers.categories'.SOCK_DGRAM
+clusto.test.drivers.resourcemanagers'.SOCK_DGRAM" class="py-name" href="#" onclick="return doclink('link-68', 'SOCK_DGRAM', 'link-1');">SOCK_DGRAM</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">    <tt class="py-name">sock</tt><tt class="py-op">.</tt><tt class="py-name">bind</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-string">'0.0.0.0'</tt><tt class="py-op">,</tt> <tt class="py-number">162</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">    <tt class="py-keyword">while</tt> <tt class="py-name">True</tt><tt class="py-op">:</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt id="link-69" class="py-name" targets="Method clusto.test.base.clustotests.TestClusto.data()=clusto.test.base.clustotests.TestClusto-class.html#data,Method clusto.test.base.drivertests.TestDriverQueries.data()=clusto.test.base.drivertests.TestDriverQueries-class.html#data,Method clusto.test.base.entitytests.TestEntityAttributes.data()=clusto.test.base.entitytests.TestEntityAttributes-class.html#data,Method clusto.test.base.entitytests.TestEntityReferences.data()=clusto.test.base.entitytests.TestEntityReferences-class.html#data,Method clusto.test.drivers.categories.pooltests.PoolTests.data()=clusto.test.drivers.categories.pooltests.PoolTests-class.html#data,Method clusto.test.drivers.common.porttests.PortTests.data()=clusto.test.drivers.common.porttests.PortTests-class.html#data,Method clusto.test.drivers.devices.servers.basicservertest'.BasicServerTest.data()=clusto.test.drivers.devices.servers.basicservertest%27.BasicServerTest-class.html#data,Method clusto.test.drivers.locations.racks.basicracktests'.BasicRackTest.data()=clusto.test.drivers.locations.racks.basicracktests%27.BasicRackTest-class.html#data,Method clusto.test.drivers.resourcemanagers.ipmanagertest.IPManagerTest.data()=clusto.test.drivers.resourcemanagers.ipmanagertest.IPManagerTest-class.html#data,Method clusto.test.drivers.resourcemanagers.simplenamemanagertest.SimpleEntityNameManagerTests.data()=clusto.test.drivers.resourcemanagers.simplenamemanagertest.SimpleEntityNameManagerTests-class.html#data,Method clusto.test.drivers.resourcemanagers.simplenamemanagertest.SimpleNameManagerTests.data()=clusto.test.drivers.resourcemanagers.simplenamemanagertest.SimpleNameManagerTests-class.html#data,Method clusto.test.drivers.resourcemanagers.simplenummanagertest.SimpleNumManagerTests.data()=clusto.test.drivers.resourcemanagers.simplenummanagertest.SimpleNumManagerTests-class.html#data,Method clusto.test.drivers.resourcemanagers.vmmanagertest.EC2VMManagerTest.data()=clusto.test.drivers.resourcemanagers.vmmanagertest.EC2VMManagerTest-class.html#data,Method clusto.test.drivers.resourcemanagers.vmmanagertest.VMManagerTest.data()=clusto.test.drivers.resourcemanagers.vmmanagertest.VMManagerTest-class.html#data,Method clusto.test.testbase.ClustoTestBase.data()=clusto.test.testbase.ClustoTestBase-class.html#data,Method clusto.test.usage.clusterusage.ClusterUsageTest.data()=clusto.test.usage.clusterusage.ClusterUsageTest-class.html#data,Method clusto.test.usage.serverinstallation.ServerInstallationTest.data()=clusto.test.usage.serverinstallation.ServerInstallationTest-class.html#data"><a title="clusto.test.base.clustotests.TestClusto.data
+clusto.test.base.drivertests.TestDriverQueries.data
+clusto.test.base.entitytests.TestEntityAttributes.data
+clusto.test.base.entitytests.TestEntityReferences.data
+clusto.test.drivers.categories.pooltests.PoolTests.data
+clusto.test.drivers.common.porttests.PortTests.data
+clusto.test.drivers.devices.servers.basicservertest'.BasicServerTest.data
+clusto.test.drivers.locations.racks.basicracktests'.BasicRackTest.data
+clusto.test.drivers.resourcemanagers.ipmanagertest.IPManagerTest.data
+clusto.test.drivers.resourcemanagers.simplenamemanagertest.SimpleEntityNameManagerTests.data
+clusto.test.drivers.resourcemanagers.simplenamemanagertest.SimpleNameManagerTests.data
+clusto.test.drivers.resourcemanagers.simplenummanagertest.SimpleNumManagerTests.data
+clusto.test.drivers.resourcemanagers.vmmanagertest.EC2VMManagerTest.data
+clusto.test.drivers.resourcemanagers.vmmanagertest.VMManagerTest.data
+clusto.test.testbase.ClustoTestBase.data
+clusto.test.usage.clusterusage.ClusterUsageTest.data
+clusto.test.usage.serverinstallation.ServerInstallationTest.data" class="py-name" href="#" onclick="return doclink('link-69', 'data', 'link-69');">data</a></tt><tt class="py-op">,</tt> <tt class="py-name">address</tt> <tt class="py-op">=</tt> <tt class="py-name">sock</tt><tt class="py-op">.</tt><tt class="py-name">recvfrom</tt><tt class="py-op">(</tt><tt class="py-number">4096</tt><tt class="py-op">)</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-name">trap</tt> <tt class="py-op">=</tt> <tt class="py-name">SNMP</tt><tt class="py-op">(</tt><tt id="link-70" class="py-name"><a title="clusto.test.base.clustotests.TestClusto.data
+clusto.test.base.drivertests.TestDriverQueries.data
+clusto.test.base.entitytests.TestEntityAttributes.data
+clusto.test.base.entitytests.TestEntityReferences.data
+clusto.test.drivers.categories.pooltests.PoolTests.data
+clusto.test.drivers.common.porttests.PortTests.data
+clusto.test.drivers.devices.servers.basicservertest'.BasicServerTest.data
+clusto.test.drivers.locations.racks.basicracktests'.BasicRackTest.data
+clusto.test.drivers.resourcemanagers.ipmanagertest.IPManagerTest.data
+clusto.test.drivers.resourcemanagers.simplenamemanagertest.SimpleEntityNameManagerTests.data
+clusto.test.drivers.resourcemanagers.simplenamemanagertest.SimpleNameManagerTests.data
+clusto.test.drivers.resourcemanagers.simplenummanagertest.SimpleNumManagerTests.data
+clusto.test.drivers.resourcemanagers.vmmanagertest.EC2VMManagerTest.data
+clusto.test.drivers.resourcemanagers.vmmanagertest.VMManagerTest.data
+clusto.test.testbase.ClustoTestBase.data
+clusto.test.usage.clusterusage.ClusterUsageTest.data
+clusto.test.usage.serverinstallation.ServerInstallationTest.data" class="py-name" href="#" onclick="return doclink('link-70', 'data', 'link-69');">data</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">var</tt> <tt class="py-keyword">in</tt> <tt class="py-name">trap</tt><tt class="py-op">.</tt><tt class="py-name">PDU</tt><tt class="py-op">.</tt><tt class="py-name">varbindlist</tt><tt class="py-op">:</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">var</tt><tt class="py-op">.</tt><tt class="py-name">oid</tt><tt class="py-op">.</tt><tt class="py-name">val</tt> <tt class="py-op">==</tt> <tt class="py-string">'1.3.6.1.4.1.9.9.215.1.1.8.1.2.1'</tt><tt class="py-op">:</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">                <tt class="py-name">var</tt><tt class="py-op">.</tt><tt id="link-71" class="py-name"><a title="clusto.schema.Attribute.value
+clusto.schema.Counter.value" class="py-name" href="#" onclick="return doclink('link-71', 'value', 'link-25');">value</a></tt><tt class="py-op">.</tt><tt class="py-name">val</tt> <tt class="py-op">=</tt> <tt class="py-name">var</tt><tt class="py-op">.</tt><tt id="link-72" class="py-name"><a title="clusto.schema.Attribute.value
+clusto.schema.Counter.value" class="py-name" href="#" onclick="return doclink('link-72', 'value', 'link-25');">value</a></tt><tt class="py-op">.</tt><tt class="py-name">val</tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-number">11</tt><tt class="py-op">]</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">                <tt class="py-name">operation</tt><tt class="py-op">,</tt> <tt class="py-name">vlan</tt><tt class="py-op">,</tt> <tt class="py-name">mac</tt><tt class="py-op">,</tt> <tt class="py-name">port</tt> <tt class="py-op">=</tt> <tt class="py-name">unpack</tt><tt class="py-op">(</tt><tt class="py-string">'&gt;cH6sH'</tt><tt class="py-op">,</tt> <tt class="py-name">var</tt><tt class="py-op">.</tt><tt id="link-73" class="py-name"><a title="clusto.schema.Attribute.value
+clusto.schema.Counter.value" class="py-name" href="#" onclick="return doclink('link-73', 'value', 'link-25');">value</a></tt><tt class="py-op">.</tt><tt class="py-name">val</tt><tt class="py-op">)</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">                <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">                    <tt class="py-string">'operation'</tt><tt class="py-op">:</tt> <tt class="py-name">ord</tt><tt class="py-op">(</tt><tt class="py-name">operation</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">                    <tt class="py-string">'vlan'</tt><tt class="py-op">:</tt> <tt class="py-name">vlan</tt><tt class="py-op">,</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">                    <tt class="py-string">'mac'</tt><tt class="py-op">:</tt> <tt class="py-string">':'</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-op">[</tt><tt class="py-op">(</tt><tt class="py-string">'%x'</tt> <tt class="py-op">%</tt> <tt class="py-name">ord</tt><tt class="py-op">(</tt><tt class="py-name">x</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">rjust</tt><tt class="py-op">(</tt><tt class="py-number">2</tt><tt class="py-op">,</tt> <tt class="py-string">'0'</tt><tt class="py-op">)</tt> <tt class="py-keyword">for</tt> <tt class="py-name">x</tt> <tt class="py-keyword">in</tt> <tt class="py-name">mac</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">lower</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">                    <tt class="py-string">'port'</tt><tt class="py-op">:</tt> <tt class="py-name">port</tt><tt class="py-op">,</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">                    <tt class="py-string">'switch'</tt><tt class="py-op">:</tt> <tt class="py-name">address</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">                <tt class="py-op">}</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">                <tt class="py-keyword">yield</tt> <tt class="py-name">result</tt> </tt>
+</div><a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="clusto-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Mar  8 10:47:22 2011
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

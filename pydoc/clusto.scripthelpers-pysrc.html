@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>clusto.scripthelpers</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="clusto-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="clusto-module.html">Package&nbsp;clusto</a> ::
+        Module&nbsp;scripthelpers
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="clusto.scripthelpers-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="clusto.scripthelpers-module.html">Module clusto.scripthelpers</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">os</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sys</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package clusto=clusto-module.html"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-0', 'clusto', 'link-0');">clusto</a></tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">logging</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Package clusto.commands=clusto.commands-module.html"><a title="clusto.commands" class="py-name" href="#" onclick="return doclink('link-1', 'commands', 'link-1');">commands</a></tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">ConfigParser</tt> <tt class="py-keyword">import</tt> <tt class="py-name">SafeConfigParser</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">optparse</tt> <tt class="py-keyword">import</tt> <tt class="py-name">OptionParser</tt><tt class="py-op">,</tt> <tt class="py-name">make_option</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt id="link-2" class="py-name" targets="Variable clusto.scripthelpers.scriptpaths=clusto.scripthelpers-module.html#scriptpaths"><a title="clusto.scripthelpers.scriptpaths" class="py-name" href="#" onclick="return doclink('link-2', 'scriptpaths', 'link-2');">scriptpaths</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">realpath</tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">curdir</tt><tt class="py-op">,</tt> <tt class="py-string">'scripts'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line">               <tt class="py-string">'/etc/clusto/scripts'</tt><tt class="py-op">,</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line">               <tt class="py-string">'/usr/local/bin'</tt><tt class="py-op">,</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line">               <tt class="py-string">'/usr/bin'</tt><tt class="py-op">,</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line">               <tt class="py-op">]</tt> <tt class="py-comment">#+ filter(lambda x: not x.endswith('.egg'), sys.path)</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"> </tt>
+<a name="list_clusto_scripts"></a><div id="list_clusto_scripts-def"><a name="L18"></a><tt class="py-lineno"> 18</tt> <a class="py-toggle" href="#" id="list_clusto_scripts-toggle" onclick="return toggle('list_clusto_scripts');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="clusto.scripthelpers-module.html#list_clusto_scripts">list_clusto_scripts</a><tt class="py-op">(</tt><tt class="py-param">path</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="list_clusto_scripts-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="list_clusto_scripts-expanded"><a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring">    Return a list of clusto scripts in the given path.</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">exists</tt><tt class="py-op">(</tt><tt class="py-name">path</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">isdir</tt><tt class="py-op">(</tt><tt class="py-name">path</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">        <tt class="py-name">dirlist</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">listdir</tt><tt class="py-op">(</tt><tt class="py-name">path</tt><tt class="py-op">)</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">        <tt class="py-name">dirlist</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">path</tt><tt class="py-op">]</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">    <tt id="link-3" class="py-name" targets="Method clusto.drivers.base.resourcemanager.ResourceManager.available()=clusto.drivers.base.resourcemanager.ResourceManager-class.html#available,Method clusto.drivers.resourcemanagers.vmmanager.VMManager.available()=clusto.drivers.resourcemanagers.vmmanager.VMManager-class.html#available"><a title="clusto.drivers.base.resourcemanager.ResourceManager.available
+clusto.drivers.resourcemanagers.vmmanager.VMManager.available" class="py-name" href="#" onclick="return doclink('link-3', 'available', 'link-3');">available</a></tt> <tt class="py-op">=</tt> <tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-keyword">lambda</tt> <tt class="py-name">x</tt><tt class="py-op">:</tt> <tt class="py-name">x</tt><tt class="py-op">.</tt><tt class="py-name">startswith</tt><tt class="py-op">(</tt><tt class="py-string">"clusto-"</tt><tt class="py-op">)</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">                       <tt class="py-keyword">and</tt> <tt class="py-keyword">not</tt> <tt class="py-name">x</tt><tt class="py-op">.</tt><tt class="py-name">endswith</tt><tt class="py-op">(</tt><tt class="py-string">'~'</tt><tt class="py-op">)</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">                       <tt class="py-keyword">and</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">access</tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">path</tt><tt class="py-op">,</tt><tt class="py-name">x</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">X_OK</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">                       <tt class="py-name">dirlist</tt><tt class="py-op">)</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">     </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">map</tt><tt class="py-op">(</tt><tt class="py-keyword">lambda</tt> <tt class="py-name">x</tt><tt class="py-op">:</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">path</tt><tt class="py-op">,</tt> <tt class="py-name">x</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt id="link-4" class="py-name"><a title="clusto.drivers.base.resourcemanager.ResourceManager.available
+clusto.drivers.resourcemanagers.vmmanager.VMManager.available" class="py-name" href="#" onclick="return doclink('link-4', 'available', 'link-3');">available</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"> </tt>
+<a name="runcmd"></a><div id="runcmd-def"><a name="L39"></a><tt class="py-lineno"> 39</tt> <a class="py-toggle" href="#" id="runcmd-toggle" onclick="return toggle('runcmd');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="clusto.scripthelpers-module.html#runcmd">runcmd</a><tt class="py-op">(</tt><tt class="py-param">args</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="runcmd-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="runcmd-expanded"><a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">     </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">    <tt class="py-name">args</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-string">'clusto-'</tt> <tt class="py-op">+</tt> <tt class="py-name">args</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">    <tt class="py-name">cmdname</tt> <tt class="py-op">=</tt> <tt class="py-name">args</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">    <tt class="py-name">paths</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">environ</tt><tt class="py-op">[</tt><tt class="py-string">'PATH'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">':'</tt><tt class="py-op">)</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">    <tt class="py-name">cmd</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">path</tt> <tt class="py-keyword">in</tt> <tt class="py-name">paths</tt><tt class="py-op">:</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">        <tt class="py-name">cmdtest</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">path</tt><tt class="py-op">,</tt> <tt class="py-name">cmdname</tt><tt class="py-op">)</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">exists</tt><tt class="py-op">(</tt><tt class="py-name">cmdtest</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">            <tt class="py-name">cmd</tt> <tt class="py-op">=</tt> <tt class="py-name">cmdtest</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">            <tt class="py-keyword">break</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">cmd</tt><tt class="py-op">:</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt id="link-5" class="py-name" targets="Class clusto.scripthelpers.CommandError=clusto.scripthelpers.CommandError-class.html"><a title="clusto.scripthelpers.CommandError" class="py-name" href="#" onclick="return doclink('link-5', 'CommandError', 'link-5');">CommandError</a></tt><tt class="py-op">(</tt><tt class="py-name">cmdname</tt> <tt class="py-op">+</tt> <tt class="py-string">" is not a clusto-command."</tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">     </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">    <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">execvpe</tt><tt class="py-op">(</tt><tt class="py-name">cmdname</tt><tt class="py-op">,</tt> <tt class="py-name">args</tt><tt class="py-op">,</tt> <tt class="py-name">env</tt><tt class="py-op">=</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">environ</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"> </tt>
+<a name="get_command"></a><div id="get_command-def"><a name="L59"></a><tt class="py-lineno"> 59</tt> <a class="py-toggle" href="#" id="get_command-toggle" onclick="return toggle('get_command');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="clusto.scripthelpers-module.html#get_command">get_command</a><tt class="py-op">(</tt><tt class="py-param">cmdname</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="get_command-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="get_command-expanded"><a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">path</tt> <tt class="py-keyword">in</tt> <tt id="link-6" class="py-name"><a title="clusto.scripthelpers.scriptpaths" class="py-name" href="#" onclick="return doclink('link-6', 'scriptpaths', 'link-2');">scriptpaths</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">        <tt class="py-name">scripts</tt> <tt class="py-op">=</tt> <tt id="link-7" class="py-name" targets="Function clusto.scripthelpers.list_clusto_scripts()=clusto.scripthelpers-module.html#list_clusto_scripts"><a title="clusto.scripthelpers.list_clusto_scripts" class="py-name" href="#" onclick="return doclink('link-7', 'list_clusto_scripts', 'link-7');">list_clusto_scripts</a></tt><tt class="py-op">(</tt><tt class="py-name">path</tt><tt class="py-op">)</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">s</tt> <tt class="py-keyword">in</tt> <tt class="py-name">scripts</tt><tt class="py-op">:</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">s</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">'-'</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">'.'</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-name">cmdname</tt><tt class="py-op">:</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-name">s</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">None</tt> </tt>
+</div><a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"> </tt>
+<a name="get_command_help"></a><div id="get_command_help-def"><a name="L72"></a><tt class="py-lineno"> 72</tt> <a class="py-toggle" href="#" id="get_command_help-toggle" onclick="return toggle('get_command_help');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="clusto.scripthelpers-module.html#get_command_help">get_command_help</a><tt class="py-op">(</tt><tt class="py-param">cmdname</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="get_command_help-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="get_command_help-expanded"><a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">    <tt class="py-name">fullpath</tt> <tt class="py-op">=</tt> <tt id="link-8" class="py-name" targets="Function clusto.scripthelpers.get_command()=clusto.scripthelpers-module.html#get_command"><a title="clusto.scripthelpers.get_command" class="py-name" href="#" onclick="return doclink('link-8', 'get_command', 'link-8');">get_command</a></tt><tt class="py-op">(</tt><tt class="py-name">cmdname</tt><tt class="py-op">)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-9" class="py-name"><a title="clusto.commands" class="py-name" href="#" onclick="return doclink('link-9', 'commands', 'link-1');">commands</a></tt><tt class="py-op">.</tt><tt class="py-name">getoutput</tt><tt class="py-op">(</tt><tt class="py-name">fullpath</tt> <tt class="py-op">+</tt> <tt class="py-string">" --help-description"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">     </tt>
+<a name="get_clusto_config"></a><div id="get_clusto_config-def"><a name="L78"></a><tt class="py-lineno"> 78</tt> <a class="py-toggle" href="#" id="get_clusto_config-toggle" onclick="return toggle('get_clusto_config');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="clusto.scripthelpers-module.html#get_clusto_config">get_clusto_config</a><tt class="py-op">(</tt><tt class="py-param">filename</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="get_clusto_config-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="get_clusto_config-expanded"><a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">    <tt class="py-docstring">"""Find, parse, and return the configuration data needed by clusto.</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"><tt class="py-docstring">    Gets the config path from the CLUSTOCONFIG environment variable otherwise</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"><tt class="py-docstring">    it is /etc/clusto/clusto.conf</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">    <tt class="py-name">filesearchpath</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-string">'/etc/clusto/clusto.conf'</tt><tt class="py-op">]</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">     </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">    <tt id="link-10" class="py-name" targets="Variable clusto.services.config.filename=clusto.services.config-module.html#filename"><a title="clusto.services.config.filename" class="py-name" href="#" onclick="return doclink('link-10', 'filename', 'link-10');">filename</a></tt> <tt class="py-op">=</tt> <tt id="link-11" class="py-name"><a title="clusto.services.config.filename" class="py-name" href="#" onclick="return doclink('link-11', 'filename', 'link-10');">filename</a></tt> <tt class="py-keyword">or</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">environ</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Function clusto.get()=clusto-module.html#get,Class Method clusto.schema.Counter.get()=clusto.schema.Counter-class.html#get"><a title="clusto.get
+clusto.schema.Counter.get" class="py-name" href="#" onclick="return doclink('link-12', 'get', 'link-12');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">'CLUSTOCONFIG'</tt><tt class="py-op">)</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt id="link-13" class="py-name"><a title="clusto.services.config.filename" class="py-name" href="#" onclick="return doclink('link-13', 'filename', 'link-10');">filename</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">        <tt id="link-14" class="py-name"><a title="clusto.services.config.filename" class="py-name" href="#" onclick="return doclink('link-14', 'filename', 'link-10');">filename</a></tt> <tt class="py-op">=</tt> <tt class="py-name">filesearchpath</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt id="link-15" class="py-name"><a title="clusto.services.config.filename" class="py-name" href="#" onclick="return doclink('link-15', 'filename', 'link-10');">filename</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">exists</tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">realpath</tt><tt class="py-op">(</tt><tt id="link-16" class="py-name"><a title="clusto.services.config.filename" class="py-name" href="#" onclick="return doclink('link-16', 'filename', 'link-10');">filename</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt id="link-17" class="py-name" targets="Class clusto.scripthelpers.CmdLineError=clusto.scripthelpers.CmdLineError-class.html"><a title="clusto.scripthelpers.CmdLineError" class="py-name" href="#" onclick="return doclink('link-17', 'CmdLineError', 'link-17');">CmdLineError</a></tt><tt class="py-op">(</tt><tt class="py-string">"Config file %s doesn't exist."</tt> <tt class="py-op">%</tt> <tt id="link-18" class="py-name"><a title="clusto.services.config.filename" class="py-name" href="#" onclick="return doclink('link-18', 'filename', 'link-10');">filename</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">         </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">    <tt id="link-19" class="py-name" targets="Module clusto.services.config=clusto.services.config-module.html,Variable clusto.services.config.config=clusto.services.config-module.html#config"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-19', 'config', 'link-19');">config</a></tt> <tt class="py-op">=</tt> <tt class="py-name">SafeConfigParser</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">    <tt id="link-20" class="py-name"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-20', 'config', 'link-19');">config</a></tt><tt class="py-op">.</tt><tt class="py-name">read</tt><tt class="py-op">(</tt><tt class="py-op">[</tt><tt id="link-21" class="py-name"><a title="clusto.services.config.filename" class="py-name" href="#" onclick="return doclink('link-21', 'filename', 'link-10');">filename</a></tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt id="link-22" class="py-name"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-22', 'config', 'link-19');">config</a></tt><tt class="py-op">.</tt><tt class="py-name">has_section</tt><tt class="py-op">(</tt><tt class="py-string">'clusto'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt id="link-23" class="py-name"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-23', 'config', 'link-19');">config</a></tt><tt class="py-op">.</tt><tt class="py-name">add_section</tt><tt class="py-op">(</tt><tt class="py-string">'clusto'</tt><tt class="py-op">)</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-string">'CLUSTODSN'</tt> <tt class="py-keyword">in</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">environ</tt><tt class="py-op">:</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt id="link-24" class="py-name"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-24', 'config', 'link-19');">config</a></tt><tt class="py-op">.</tt><tt class="py-name">set</tt><tt class="py-op">(</tt><tt class="py-string">'clusto'</tt><tt class="py-op">,</tt> <tt class="py-string">'dsn'</tt><tt class="py-op">,</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">environ</tt><tt class="py-op">[</tt><tt class="py-string">'CLUSTODSN'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt id="link-25" class="py-name"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-25', 'config', 'link-19');">config</a></tt><tt class="py-op">.</tt><tt class="py-name">has_option</tt><tt class="py-op">(</tt><tt class="py-string">'clusto'</tt><tt class="py-op">,</tt> <tt class="py-string">'dsn'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt id="link-26" class="py-name"><a title="clusto.scripthelpers.CmdLineError" class="py-name" href="#" onclick="return doclink('link-26', 'CmdLineError', 'link-17');">CmdLineError</a></tt><tt class="py-op">(</tt><tt class="py-string">"No database given for clusto data."</tt><tt class="py-op">)</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-27" class="py-name"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-27', 'config', 'link-19');">config</a></tt> </tt>
+</div><a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"> </tt>
+<a name="init_script"></a><div id="init_script-def"><a name="L112"></a><tt class="py-lineno">112</tt> <a class="py-toggle" href="#" id="init_script-toggle" onclick="return toggle('init_script');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="clusto.scripthelpers-module.html#init_script">init_script</a><tt class="py-op">(</tt><tt class="py-param">name</tt><tt class="py-op">=</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">basename</tt><tt class="py-op">(</tt><tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">argv</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-param">configfile</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">                <tt class="py-param">initializedb</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="init_script-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="init_script-expanded"><a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">    <tt class="py-docstring">"""Initialize the clusto environment for clusto scripts.</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"><tt class="py-docstring">    Connects to the clusto database, returns a python SafeConfigParser and a</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"><tt class="py-docstring">    logger.</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"><tt class="py-docstring">    Uses get_clusto_config and setup_logging</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">    <tt id="link-28" class="py-name"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-28', 'config', 'link-19');">config</a></tt> <tt class="py-op">=</tt> <tt id="link-29" class="py-name" targets="Function clusto.scripthelpers.get_clusto_config()=clusto.scripthelpers-module.html#get_clusto_config"><a title="clusto.scripthelpers.get_clusto_config" class="py-name" href="#" onclick="return doclink('link-29', 'get_clusto_config', 'link-29');">get_clusto_config</a></tt><tt class="py-op">(</tt><tt id="link-30" class="py-name"><a title="clusto.services.config.filename" class="py-name" href="#" onclick="return doclink('link-30', 'filename', 'link-10');">filename</a></tt><tt class="py-op">=</tt><tt class="py-name">configfile</tt><tt class="py-op">)</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">    <tt id="link-31" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-31', 'clusto', 'link-0');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-32" class="py-name" targets="Function clusto.connect()=clusto-module.html#connect,Method clusto.drivers.devices.consoleservers.basicconsoleserver.BasicConsoleServer.connect()=clusto.drivers.devices.consoleservers.basicconsoleserver.BasicConsoleServer-class.html#connect,Method clusto.drivers.devices.consoleservers.opengear.OpenGearCM4148.connect()=clusto.drivers.devices.consoleservers.opengear.OpenGearCM4148-class.html#connect"><a title="clusto.connect
+clusto.drivers.devices.consoleservers.basicconsoleserver.BasicConsoleServer.connect
+clusto.drivers.devices.consoleservers.opengear.OpenGearCM4148.connect" class="py-name" href="#" onclick="return doclink('link-32', 'connect', 'link-32');">connect</a></tt><tt class="py-op">(</tt><tt id="link-33" class="py-name"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-33', 'config', 'link-19');">config</a></tt><tt class="py-op">=</tt><tt id="link-34" class="py-name"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-34', 'config', 'link-19');">config</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">initializedb</tt><tt class="py-op">:</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">        <tt id="link-35" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-35', 'clusto', 'link-0');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-36" class="py-name" targets="Function clusto.init_clusto()=clusto-module.html#init_clusto"><a title="clusto.init_clusto" class="py-name" href="#" onclick="return doclink('link-36', 'init_clusto', 'link-36');">init_clusto</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">     </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">    <tt class="py-name">logger</tt> <tt class="py-op">=</tt> <tt id="link-37" class="py-name" targets="Function clusto.scripthelpers.setup_logging()=clusto.scripthelpers-module.html#setup_logging"><a title="clusto.scripthelpers.setup_logging" class="py-name" href="#" onclick="return doclink('link-37', 'setup_logging', 'link-37');">setup_logging</a></tt><tt class="py-op">(</tt><tt id="link-38" class="py-name"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-38', 'config', 'link-19');">config</a></tt><tt class="py-op">=</tt><tt id="link-39" class="py-name"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-39', 'config', 'link-19');">config</a></tt><tt class="py-op">,</tt> <tt id="link-40" class="py-name" targets="Variable clusto.drivers.base.driver.Driver.name=clusto.drivers.base.driver.Driver-class.html#name,Variable clusto.schema.Entity.name=clusto.schema.Entity-class.html#name"><a title="clusto.drivers.base.driver.Driver.name
+clusto.schema.Entity.name" class="py-name" href="#" onclick="return doclink('link-40', 'name', 'link-40');">name</a></tt><tt class="py-op">=</tt><tt id="link-41" class="py-name"><a title="clusto.drivers.base.driver.Driver.name
+clusto.schema.Entity.name" class="py-name" href="#" onclick="return doclink('link-41', 'name', 'link-40');">name</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt id="link-42" class="py-name"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-42', 'config', 'link-19');">config</a></tt><tt class="py-op">,</tt> <tt class="py-name">logger</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"> </tt>
+<a name="setup_logging"></a><div id="setup_logging-def"><a name="L132"></a><tt class="py-lineno">132</tt> <a class="py-toggle" href="#" id="setup_logging-toggle" onclick="return toggle('setup_logging');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="clusto.scripthelpers-module.html#setup_logging">setup_logging</a><tt class="py-op">(</tt><tt class="py-param">config</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">=</tt><tt class="py-string">"clusto.script"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="setup_logging-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="setup_logging-expanded"><a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">    <tt class="py-docstring">"""Setup the default log level and return the logger</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line"><tt class="py-docstring">    The logger will try to log to /var/log and console.</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"><tt class="py-docstring">    </tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"><tt class="py-docstring">    #FIXME shouldn't ignore the config</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">    <tt class="py-name">loglocation</tt><tt class="py-op">=</tt><tt class="py-string">"/var/log"</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">    <tt class="py-name">logfilename</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">loglocation</tt><tt class="py-op">,</tt><tt class="py-string">'clusto.log'</tt><tt class="py-op">)</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">     </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">access</tt><tt class="py-op">(</tt><tt class="py-name">loglocation</tt><tt class="py-op">,</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">W_OK</tt><tt class="py-op">)</tt>  </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">            <tt class="py-keyword">or</tt> <tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">exists</tt><tt class="py-op">(</tt><tt class="py-name">logfilename</tt><tt class="py-op">)</tt> <tt class="py-keyword">and</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">access</tt><tt class="py-op">(</tt><tt class="py-name">logfilename</tt><tt class="py-op">,</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">W_OK</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">        <tt class="py-name">logfilename</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">devnull</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">         </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">    <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">basicConfig</tt><tt class="py-op">(</tt><tt class="py-name">level</tt><tt class="py-op">=</tt><tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">WARNING</tt><tt class="py-op">,</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">                        <tt class="py-name">format</tt><tt class="py-op">=</tt><tt class="py-string">'%(asctime)s %(name)-12s %(levelname)-8s %(message)s'</tt><tt class="py-op">,</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">                        <tt class="py-name">datefmt</tt><tt class="py-op">=</tt><tt class="py-string">'%m-%d %H:%M'</tt><tt class="py-op">,</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">                        <tt id="link-43" class="py-name"><a title="clusto.services.config.filename" class="py-name" href="#" onclick="return doclink('link-43', 'filename', 'link-10');">filename</a></tt><tt class="py-op">=</tt><tt class="py-name">logfilename</tt><tt class="py-op">,</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">                        <tt class="py-op">)</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">     </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line"> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">    <tt id="link-44" class="py-name" targets="Variable clusto.services.dhcp.log=clusto.services.dhcp-module.html#log,Variable clusto.services.http.log=clusto.services.http-module.html#log,Variable clusto.services.snmp.log=clusto.services.snmp-module.html#log"><a title="clusto.services.dhcp.log
+clusto.services.http.log
+clusto.services.snmp.log" class="py-name" href="#" onclick="return doclink('link-44', 'log', 'link-44');">log</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt id="link-45" class="py-name"><a title="clusto.drivers.base.driver.Driver.name
+clusto.schema.Entity.name" class="py-name" href="#" onclick="return doclink('link-45', 'name', 'link-40');">name</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line"> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">    <tt class="py-name">formatter</tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">Formatter</tt><tt class="py-op">(</tt><tt class="py-string">'%(name)-12s: %(levelname)-8s %(message)s'</tt><tt class="py-op">)</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">    <tt id="link-46" class="py-name" targets="Method clusto.drivers.base.device.Device.console()=clusto.drivers.base.device.Device-class.html#console"><a title="clusto.drivers.base.device.Device.console" class="py-name" href="#" onclick="return doclink('link-46', 'console', 'link-46');">console</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">StreamHandler</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">    <tt id="link-47" class="py-name"><a title="clusto.drivers.base.device.Device.console" class="py-name" href="#" onclick="return doclink('link-47', 'console', 'link-46');">console</a></tt><tt class="py-op">.</tt><tt class="py-name">setLevel</tt><tt class="py-op">(</tt><tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">INFO</tt><tt class="py-op">)</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">    <tt id="link-48" class="py-name"><a title="clusto.drivers.base.device.Device.console" class="py-name" href="#" onclick="return doclink('link-48', 'console', 'link-46');">console</a></tt><tt class="py-op">.</tt><tt class="py-name">setFormatter</tt><tt class="py-op">(</tt><tt class="py-name">formatter</tt><tt class="py-op">)</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line"> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">    <tt id="link-49" class="py-name"><a title="clusto.services.dhcp.log
+clusto.services.http.log
+clusto.services.snmp.log" class="py-name" href="#" onclick="return doclink('link-49', 'log', 'link-44');">log</a></tt><tt class="py-op">.</tt><tt class="py-name">addHandler</tt><tt class="py-op">(</tt><tt id="link-50" class="py-name"><a title="clusto.drivers.base.device.Device.console" class="py-name" href="#" onclick="return doclink('link-50', 'console', 'link-46');">console</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line"> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-51" class="py-name"><a title="clusto.services.dhcp.log
+clusto.services.http.log
+clusto.services.snmp.log" class="py-name" href="#" onclick="return doclink('link-51', 'log', 'link-44');">log</a></tt> </tt>
+</div><a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line"> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line"> </tt>
+<a name="setup_clusto_env"></a><div id="setup_clusto_env-def"><a name="L167"></a><tt class="py-lineno">167</tt> <a class="py-toggle" href="#" id="setup_clusto_env-toggle" onclick="return toggle('setup_clusto_env');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="clusto.scripthelpers-module.html#setup_clusto_env">setup_clusto_env</a><tt class="py-op">(</tt><tt class="py-param">options</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="setup_clusto_env-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="setup_clusto_env-expanded"><a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line"><tt class="py-docstring">    Take clusto parameters and put it into the shell environment.</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line"> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line"> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">dsn</tt><tt class="py-op">:</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">        <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">environ</tt><tt class="py-op">[</tt><tt class="py-string">'CLUSTODSN'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">dsn</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">configfile</tt><tt class="py-op">:</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">        <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">environ</tt><tt class="py-op">[</tt><tt class="py-string">'CLUSTOCONFIG'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">configfile</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line"> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">environ</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-string">'CLUSTOCONFIG'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">        <tt id="link-52" class="py-name"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-52', 'config', 'link-19');">config</a></tt> <tt class="py-op">=</tt> <tt id="link-53" class="py-name"><a title="clusto.scripthelpers.get_clusto_config" class="py-name" href="#" onclick="return doclink('link-53', 'get_clusto_config', 'link-29');">get_clusto_config</a></tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">environ</tt><tt class="py-op">[</tt><tt class="py-string">'CLUSTOCONFIG'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line">        <tt id="link-54" class="py-name"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-54', 'config', 'link-19');">config</a></tt> <tt class="py-op">=</tt> <tt id="link-55" class="py-name"><a title="clusto.scripthelpers.get_clusto_config" class="py-name" href="#" onclick="return doclink('link-55', 'get_clusto_config', 'link-29');">get_clusto_config</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line"> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">environ</tt><tt class="py-op">.</tt><tt class="py-name">has_key</tt><tt class="py-op">(</tt><tt class="py-string">'CLUSTODSN'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">        <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">environ</tt><tt class="py-op">[</tt><tt class="py-string">'CLUSTODSN'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt id="link-56" class="py-name"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-56', 'config', 'link-19');">config</a></tt><tt class="py-op">.</tt><tt id="link-57" class="py-name"><a title="clusto.get
+clusto.schema.Counter.get" class="py-name" href="#" onclick="return doclink('link-57', 'get', 'link-12');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">'clusto'</tt><tt class="py-op">,</tt><tt class="py-string">'dsn'</tt><tt class="py-op">)</tt> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line"> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-58" class="py-name"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-58', 'config', 'link-19');">config</a></tt> </tt>
+</div><a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line"> </tt>
+<a name="CmdLineError"></a><div id="CmdLineError-def"><a name="L188"></a><tt class="py-lineno">188</tt> <a class="py-toggle" href="#" id="CmdLineError-toggle" onclick="return toggle('CmdLineError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="clusto.scripthelpers.CmdLineError-class.html">CmdLineError</a><tt class="py-op">(</tt><tt class="py-base-class">Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="CmdLineError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="CmdLineError-expanded"><a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line"> </tt>
+<a name="CommandError"></a><div id="CommandError-def"><a name="L191"></a><tt class="py-lineno">191</tt> <a class="py-toggle" href="#" id="CommandError-toggle" onclick="return toggle('CommandError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="clusto.scripthelpers.CommandError-class.html">CommandError</a><tt class="py-op">(</tt><tt class="py-base-class">Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="CommandError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="CommandError-expanded"><a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line"> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line"> </tt>
+<a name="ClustoScript"></a><div id="ClustoScript-def"><a name="L195"></a><tt class="py-lineno">195</tt> <a class="py-toggle" href="#" id="ClustoScript-toggle" onclick="return toggle('ClustoScript');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="clusto.scripthelpers.ClustoScript-class.html">ClustoScript</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ClustoScript-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ClustoScript-expanded"><a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line"> </tt>
+<a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line">    <tt id="link-59" class="py-name" targets="Variable clusto.scripthelpers.ClustoScript.usage=clusto.scripthelpers.ClustoScript-class.html#usage,Package clusto.test.usage=clusto.test.usage-module.html"><a title="clusto.scripthelpers.ClustoScript.usage
+clusto.test.usage" class="py-name" href="#" onclick="return doclink('link-59', 'usage', 'link-59');">usage</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"%prog [options]"</tt> </tt>
+<a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line">    <tt id="link-60" class="py-name" targets="Variable clusto.scripthelpers.ClustoScript.option_list=clusto.scripthelpers.ClustoScript-class.html#option_list"><a title="clusto.scripthelpers.ClustoScript.option_list" class="py-name" href="#" onclick="return doclink('link-60', 'option_list', 'link-60');">option_list</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line">    <tt id="link-61" class="py-name" targets="Variable clusto.scripthelpers.ClustoScript.num_args=clusto.scripthelpers.ClustoScript-class.html#num_args"><a title="clusto.scripthelpers.ClustoScript.num_args" class="py-name" href="#" onclick="return doclink('link-61', 'num_args', 'link-61');">num_args</a></tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line">    <tt id="link-62" class="py-name" targets="Variable clusto.scripthelpers.ClustoScript.num_args_min=clusto.scripthelpers.ClustoScript-class.html#num_args_min"><a title="clusto.scripthelpers.ClustoScript.num_args_min" class="py-name" href="#" onclick="return doclink('link-62', 'num_args_min', 'link-62');">num_args_min</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line">    <tt id="link-63" class="py-name" targets="Variable clusto.scripthelpers.ClustoScript.short_description=clusto.scripthelpers.ClustoScript-class.html#short_description"><a title="clusto.scripthelpers.ClustoScript.short_description" class="py-name" href="#" onclick="return doclink('link-63', 'short_description', 'link-63');">short_description</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"sample short descripton"</tt> </tt>
+<a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line">     </tt>
+<a name="ClustoScript.__init__"></a><div id="ClustoScript.__init__-def"><a name="L203"></a><tt class="py-lineno">203</tt> <a class="py-toggle" href="#" id="ClustoScript.__init__-toggle" onclick="return toggle('ClustoScript.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="clusto.scripthelpers.ClustoScript-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ClustoScript.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ClustoScript.__init__-expanded"><a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">parser</tt> <tt class="py-op">=</tt> <tt class="py-name">OptionParser</tt><tt class="py-op">(</tt><tt id="link-64" class="py-name"><a title="clusto.scripthelpers.ClustoScript.usage
+clusto.test.usage" class="py-name" href="#" onclick="return doclink('link-64', 'usage', 'link-59');">usage</a></tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-65" class="py-name"><a title="clusto.scripthelpers.ClustoScript.usage
+clusto.test.usage" class="py-name" href="#" onclick="return doclink('link-65', 'usage', 'link-59');">usage</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line">                                   <tt id="link-66" class="py-name"><a title="clusto.scripthelpers.ClustoScript.option_list" class="py-name" href="#" onclick="return doclink('link-66', 'option_list', 'link-60');">option_list</a></tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-67" class="py-name"><a title="clusto.scripthelpers.ClustoScript.option_list" class="py-name" href="#" onclick="return doclink('link-67', 'option_list', 'link-60');">option_list</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L206"></a><tt class="py-lineno">206</tt>  <tt class="py-line"> </tt>
+<a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">add_option</tt><tt class="py-op">(</tt><tt class="py-string">"--help-description"</tt><tt class="py-op">,</tt> </tt>
+<a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line">                                <tt class="py-name">action</tt><tt class="py-op">=</tt><tt class="py-string">"callback"</tt><tt class="py-op">,</tt> </tt>
+<a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line">                               <tt class="py-name">callback</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-68" class="py-name" targets="Method clusto.scripthelpers.ClustoScript._help_description()=clusto.scripthelpers.ClustoScript-class.html#_help_description"><a title="clusto.scripthelpers.ClustoScript._help_description" class="py-name" href="#" onclick="return doclink('link-68', '_help_description', 'link-68');">_help_description</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L210"></a><tt class="py-lineno">210</tt>  <tt class="py-line">                               <tt class="py-name">dest</tt><tt class="py-op">=</tt><tt class="py-string">"helpdesc"</tt><tt class="py-op">,</tt> </tt>
+<a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line">                               <tt class="py-name">help</tt><tt class="py-op">=</tt><tt class="py-string">"print out the short command description"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line"> </tt>
+<a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line">         </tt>
+<a name="L214"></a><tt class="py-lineno">214</tt>  <tt class="py-line">     </tt>
+<a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line"> </tt>
+<a name="ClustoScript._help_description"></a><div id="ClustoScript._help_description-def"><a name="L216"></a><tt class="py-lineno">216</tt> <a class="py-toggle" href="#" id="ClustoScript._help_description-toggle" onclick="return toggle('ClustoScript._help_description');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="clusto.scripthelpers.ClustoScript-class.html#_help_description">_help_description</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">option</tt><tt class="py-op">,</tt> <tt class="py-param">opt_str</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">,</tt> <tt class="py-param">parser</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-param">args</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-param">kwargs</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ClustoScript._help_description-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ClustoScript._help_description-expanded"><a name="L217"></a><tt class="py-lineno">217</tt>  <tt class="py-line"> </tt>
+<a name="L218"></a><tt class="py-lineno">218</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-69" class="py-name"><a title="clusto.scripthelpers.ClustoScript.short_description" class="py-name" href="#" onclick="return doclink('link-69', 'short_description', 'link-63');">short_description</a></tt> </tt>
+<a name="L219"></a><tt class="py-lineno">219</tt>  <tt class="py-line">        <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">exit</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L220"></a><tt class="py-lineno">220</tt>  <tt class="py-line">     </tt>
+<a name="L221"></a><tt class="py-lineno">221</tt>  <tt class="py-line"> </tt>
+<a name="L222"></a><tt class="py-lineno">222</tt>  <tt class="py-line"> </tt>
+<a name="runscript"></a><div id="runscript-def"><a name="L223"></a><tt class="py-lineno">223</tt> <a class="py-toggle" href="#" id="runscript-toggle" onclick="return toggle('runscript');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="clusto.scripthelpers-module.html#runscript">runscript</a><tt class="py-op">(</tt><tt class="py-param">scriptclass</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="runscript-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="runscript-expanded"><a name="L224"></a><tt class="py-lineno">224</tt>  <tt class="py-line"> </tt>
+<a name="L225"></a><tt class="py-lineno">225</tt>  <tt class="py-line">    <tt class="py-name">script</tt> <tt class="py-op">=</tt> <tt class="py-name">scriptclass</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L226"></a><tt class="py-lineno">226</tt>  <tt class="py-line"> </tt>
+<a name="L227"></a><tt class="py-lineno">227</tt>  <tt class="py-line">    <tt class="py-op">(</tt><tt class="py-name">options</tt><tt class="py-op">,</tt> <tt class="py-name">argv</tt><tt class="py-op">)</tt> <tt class="py-op">=</tt> <tt class="py-name">script</tt><tt class="py-op">.</tt><tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">parse_args</tt><tt class="py-op">(</tt><tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">argv</tt><tt class="py-op">)</tt> </tt>
+<a name="L228"></a><tt class="py-lineno">228</tt>  <tt class="py-line"> </tt>
+<a name="L229"></a><tt class="py-lineno">229</tt>  <tt class="py-line">    <tt id="link-70" class="py-name"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-70', 'config', 'link-19');">config</a></tt><tt class="py-op">,</tt> <tt class="py-name">logger</tt> <tt class="py-op">=</tt> <tt id="link-71" class="py-name" targets="Function clusto.scripthelpers.init_script()=clusto.scripthelpers-module.html#init_script"><a title="clusto.scripthelpers.init_script" class="py-name" href="#" onclick="return doclink('link-71', 'init_script', 'link-71');">init_script</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L230"></a><tt class="py-lineno">230</tt>  <tt class="py-line"> </tt>
+<a name="L231"></a><tt class="py-lineno">231</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L232"></a><tt class="py-lineno">232</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">script</tt><tt class="py-op">.</tt><tt id="link-72" class="py-name"><a title="clusto.scripthelpers.ClustoScript.num_args" class="py-name" href="#" onclick="return doclink('link-72', 'num_args', 'link-61');">num_args</a></tt> <tt class="py-op">!=</tt> <tt class="py-name">None</tt> <tt class="py-keyword">and</tt> <tt class="py-name">script</tt><tt class="py-op">.</tt><tt id="link-73" class="py-name"><a title="clusto.scripthelpers.ClustoScript.num_args" class="py-name" href="#" onclick="return doclink('link-73', 'num_args', 'link-61');">num_args</a></tt> <tt class="py-op">!=</tt> <tt class="py-op">(</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">argv</tt><tt class="py-op">)</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> <tt class="py-keyword">or</tt> <tt class="py-name">script</tt><tt class="py-op">.</tt><tt id="link-74" class="py-name"><a title="clusto.scripthelpers.ClustoScript.num_args_min" class="py-name" href="#" onclick="return doclink('link-74', 'num_args_min', 'link-62');">num_args_min</a></tt> <tt class="py-op">&gt;</tt> <tt class="py-op">(</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">argv</tt><tt class="py-op">)</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt id="link-75" class="py-name"><a title="clusto.scripthelpers.CmdLineError" class="py-name" href="#" onclick="return doclink('link-75', 'CmdLineError', 'link-17');">CmdLineError</a></tt><tt class="py-op">(</tt><tt class="py-string">"Wrong number of arguments."</tt><tt class="py-op">)</tt> </tt>
+<a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line">         </tt>
+<a name="L235"></a><tt class="py-lineno">235</tt>  <tt class="py-line">        <tt class="py-name">retval</tt> <tt class="py-op">=</tt> <tt class="py-name">script</tt><tt class="py-op">.</tt><tt class="py-name">main</tt><tt class="py-op">(</tt><tt class="py-name">argv</tt><tt class="py-op">,</tt> </tt>
+<a name="L236"></a><tt class="py-lineno">236</tt>  <tt class="py-line">                             <tt class="py-name">options</tt><tt class="py-op">,</tt> </tt>
+<a name="L237"></a><tt class="py-lineno">237</tt>  <tt class="py-line">                             <tt id="link-76" class="py-name"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-76', 'config', 'link-19');">config</a></tt><tt class="py-op">=</tt><tt id="link-77" class="py-name"><a title="clusto.services.config
+clusto.services.config.config" class="py-name" href="#" onclick="return doclink('link-77', 'config', 'link-19');">config</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L238"></a><tt class="py-lineno">238</tt>  <tt class="py-line">                             <tt id="link-78" class="py-name"><a title="clusto.services.dhcp.log
+clusto.services.http.log
+clusto.services.snmp.log" class="py-name" href="#" onclick="return doclink('link-78', 'log', 'link-44');">log</a></tt><tt class="py-op">=</tt><tt class="py-name">logger</tt><tt class="py-op">)</tt> </tt>
+<a name="L239"></a><tt class="py-lineno">239</tt>  <tt class="py-line"> </tt>
+<a name="L240"></a><tt class="py-lineno">240</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-op">(</tt><tt id="link-79" class="py-name"><a title="clusto.scripthelpers.CmdLineError" class="py-name" href="#" onclick="return doclink('link-79', 'CmdLineError', 'link-17');">CmdLineError</a></tt><tt class="py-op">,</tt> <tt class="py-name">LookupError</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">msg</tt><tt class="py-op">:</tt> </tt>
+<a name="L241"></a><tt class="py-lineno">241</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-name">msg</tt> </tt>
+<a name="L242"></a><tt class="py-lineno">242</tt>  <tt class="py-line">        <tt class="py-name">script</tt><tt class="py-op">.</tt><tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">print_help</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L243"></a><tt class="py-lineno">243</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-number">1</tt> </tt>
+<a name="L244"></a><tt class="py-lineno">244</tt>  <tt class="py-line"> </tt>
+<a name="L245"></a><tt class="py-lineno">245</tt>  <tt class="py-line">     </tt>
+<a name="L246"></a><tt class="py-lineno">246</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">exit</tt><tt class="py-op">(</tt><tt class="py-name">retval</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L247"></a><tt class="py-lineno">247</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="clusto-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Mar  8 10:47:22 2011
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

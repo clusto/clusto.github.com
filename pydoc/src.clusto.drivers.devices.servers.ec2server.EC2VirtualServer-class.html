@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>src.clusto.drivers.devices.servers.ec2server.EC2VirtualServer</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="src.clusto-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;src ::
+        <a href="src.clusto-module.html">Package&nbsp;clusto</a> ::
+        <a href="src.clusto.drivers-module.html">Package&nbsp;drivers</a> ::
+        <a href="src.clusto.drivers.devices-module.html">Package&nbsp;devices</a> ::
+        <a href="src.clusto.drivers.devices.servers-module.html">Package&nbsp;servers</a> ::
+        <a href="src.clusto.drivers.devices.servers.ec2server-module.html">Module&nbsp;ec2server</a> ::
+        Class&nbsp;EC2VirtualServer
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="src.clusto.drivers.devices.servers.ec2server.EC2VirtualServer-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class EC2VirtualServer</h1><p class="nomargin-top"><span class="codelink"><a href="src.clusto.drivers.devices.servers.ec2server-pysrc.html#EC2VirtualServer">source&nbsp;code</a></span></p>
+<pre class="base-tree">
+        clusto.drivers.devices.common.ipmixin.IPMixin --+        
+                                                        |        
+    clusto.drivers.devices.common.portmixin.PortMixin --+        
+                                                        |        
+                                       object --+       |        
+                                                |       |        
+                clusto.drivers.base.driver.Driver --+   |        
+                                                    |   |        
+                    clusto.drivers.base.device.Device --+        
+                                                        |        
+   clusto.drivers.devices.servers.basicserver.BasicServer --+    
+                                                            |    
+clusto.drivers.devices.servers.basicserver.BasicVirtualServer --+
+                                                                |
+                                                               <strong class="uidshort">EC2VirtualServer</strong>
+</pre>
+
+<hr />
+<!-- ==================== NESTED CLASSES ==================== -->
+<a name="section-NestedClasses"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Nested Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-NestedClasses"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>clusto.drivers.base.driver.Driver</code></b>:
+      <code><a href="clusto.drivers.base.clustodriver.ClustoDriver-class.html">__metaclass__</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>clusto.drivers.devices.servers.basicserver.BasicVirtualServer</code></b>:
+      <code>create</code>,
+      <code>destroy</code>,
+      <code>reboot</code>,
+      <code>shutdown</code>,
+      <code>start</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>clusto.drivers.devices.common.ipmixin.IPMixin</code></b>:
+      <code>add_ip</code>,
+      <code>bind_ip_to_osport</code>,
+      <code>get_ips</code>,
+      <code>has_ip</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>clusto.drivers.devices.common.portmixin.PortMixin</code></b>:
+      <code>add_port_attr</code>,
+      <code>connect_ports</code>,
+      <code>del_port_attr</code>,
+      <code>disconnect_port</code>,
+      <code>get_connected</code>,
+      <code>get_port_attr</code>,
+      <code>port_exists</code>,
+      <code>port_free</code>,
+      <code>ports_connectable</code>,
+      <code>set_port_attr</code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code>clusto.drivers.devices.common.portmixin.PortMixin</code></b> (private):
+      <code>_ensure_portnum</code>,
+      <code>_port_key</code>
+      </p></div>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>clusto.drivers.base.device.Device</code></b>:
+      <code>add_fqdn</code>,
+      <code>console</code>,
+      <code>power_off</code>,
+      <code>power_on</code>,
+      <code>power_reboot</code>,
+      <code>remove_fqdn</code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code>clusto.drivers.base.device.Device</code></b> (private):
+      <code>_get_hostname</code>,
+      <code>_power_captcha</code>,
+      <code>_set_hostname</code>
+      </p></div>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>clusto.drivers.base.driver.Driver</code></b>:
+      <code>__cmp__</code>,
+      <code>__contains__</code>,
+      <code>__eq__</code>,
+      <code>__getattr__</code>,
+      <code>__hash__</code>,
+      <code>__init__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>add_attr</code>,
+      <code>attr_items</code>,
+      <code>attr_key_tuples</code>,
+      <code>attr_keys</code>,
+      <code>attr_query</code>,
+      <code>attr_value</code>,
+      <code>attr_values</code>,
+      <code>attrs</code>,
+      <code>content_attrs</code>,
+      <code>contents</code>,
+      <code>del_attrs</code>,
+      <code>expire</code>,
+      <code>has_attr</code>,
+      <code>insert</code>,
+      <code>parents</code>,
+      <code>referencers</code>,
+      <code>references</code>,
+      <code>remove</code>,
+      <code>set_attr</code>,
+      <code>siblings</code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code>clusto.drivers.base.driver.Driver</code></b> (private):
+      <code>_check_attr_name</code>,
+      <code>_choose_best_driver</code>,
+      <code>_itemize_attrs</code>
+      </p></div>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS METHODS ==================== -->
+<a name="section-ClassMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>clusto.drivers.base.device.Device</code></b>:
+      <code>get_by_serial_number</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>clusto.drivers.base.driver.Driver</code></b>:
+      <code>attr_filter</code>,
+      <code>do_attr_query</code>,
+      <code>ensure_driver</code>,
+      <code>get_by_attr</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== STATIC METHODS ==================== -->
+<a name="section-StaticMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Static Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-StaticMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>clusto.drivers.base.driver.Driver</code></b>:
+      <code>__new__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_driver_name"></a><span class="summary-name">_driver_name</span> = <code title="'ec2virtualserver'"><code class="variable-quote">'</code><code class="variable-string">ec2virtualserver</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_port_meta"></a><span class="summary-name">_port_meta</span> = <code title="{}"><code class="variable-group">{</code><code class="variable-group">}</code></code>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code>clusto.drivers.devices.servers.basicserver.BasicVirtualServer</code></b> (private):
+      <code>_clusto_type</code>
+      </p></div>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code>clusto.drivers.devices.servers.basicserver.BasicServer</code></b> (private):
+      <code>_portmeta</code>,
+      <code>_properties</code>
+      </p></div>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code>clusto.drivers.base.device.Device</code></b> (private):
+      <code>_clustotype</code>
+      </p></div>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>clusto.drivers.devices.common.portmixin.PortMixin</code></b>:
+      <code>connected_ports</code>,
+      <code>free_ports</code>,
+      <code>port_info</code>,
+      <code>port_info_tuples</code>,
+      <code>port_types</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>clusto.drivers.base.device.Device</code></b>:
+      <code>fqdns</code>,
+      <code>hostname</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>clusto.drivers.base.driver.Driver</code></b>:
+      <code>driver</code>,
+      <code>name</code>,
+      <code>type</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="src.clusto-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Mar  8 10:46:21 2011
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

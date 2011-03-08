@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>src.clusto.drivers.devices.common.ipmixin</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="src.clusto-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;src ::
+        <a href="src.clusto-module.html">Package&nbsp;clusto</a> ::
+        <a href="src.clusto.drivers-module.html">Package&nbsp;drivers</a> ::
+        <a href="src.clusto.drivers.devices-module.html">Package&nbsp;devices</a> ::
+        <a href="src.clusto.drivers.devices.common-module.html">Package&nbsp;common</a> ::
+        Module&nbsp;ipmixin
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="src.clusto.drivers.devices.common.ipmixin-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="src.clusto.drivers.devices.common.ipmixin-module.html">Module src.clusto.drivers.devices.common.ipmixin</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-docstring">IPMixin is a basic mixin to be used by devices that can be assigned IPs</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">re</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package src.clusto=src.clusto-module.html"><a title="src.clusto" class="py-name" href="#" onclick="return doclink('link-0', 'clusto', 'link-0');">clusto</a></tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-1" class="py-name"><a title="src.clusto" class="py-name" href="#" onclick="return doclink('link-1', 'clusto', 'link-0');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Package src.clusto.drivers=src.clusto.drivers-module.html"><a title="src.clusto.drivers" class="py-name" href="#" onclick="return doclink('link-2', 'drivers', 'link-2');">drivers</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Package src.clusto.drivers.resourcemanagers=src.clusto.drivers.resourcemanagers-module.html"><a title="src.clusto.drivers.resourcemanagers" class="py-name" href="#" onclick="return doclink('link-3', 'resourcemanagers', 'link-3');">resourcemanagers</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">IPManager</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-4" class="py-name"><a title="src.clusto" class="py-name" href="#" onclick="return doclink('link-4', 'clusto', 'link-0');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Module src.clusto.exceptions=src.clusto.exceptions-module.html"><a title="src.clusto.exceptions" class="py-name" href="#" onclick="return doclink('link-5', 'exceptions', 'link-5');">exceptions</a></tt> <tt class="py-keyword">import</tt> <tt id="link-6" class="py-name" targets="Class src.clusto.exceptions.ConnectionException=src.clusto.exceptions.ConnectionException-class.html"><a title="src.clusto.exceptions.ConnectionException" class="py-name" href="#" onclick="return doclink('link-6', 'ConnectionException', 'link-6');">ConnectionException</a></tt><tt class="py-op">,</tt>  <tt id="link-7" class="py-name" targets="Class src.clusto.exceptions.ResourceException=src.clusto.exceptions.ResourceException-class.html"><a title="src.clusto.exceptions.ResourceException" class="py-name" href="#" onclick="return doclink('link-7', 'ResourceException', 'link-7');">ResourceException</a></tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"> </tt>
+<a name="IPMixin"></a><div id="IPMixin-def"><a name="L14"></a><tt class="py-lineno">14</tt> <a class="py-toggle" href="#" id="IPMixin-toggle" onclick="return toggle('IPMixin');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="src.clusto.drivers.devices.common.ipmixin.IPMixin-class.html">IPMixin</a><tt class="py-op">:</tt> </tt>
+</div><div id="IPMixin-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="IPMixin-expanded"><a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"> </tt>
+<a name="IPMixin.add_ip"></a><div id="IPMixin.add_ip-def"><a name="L16"></a><tt class="py-lineno">16</tt> <a class="py-toggle" href="#" id="IPMixin.add_ip-toggle" onclick="return toggle('IPMixin.add_ip');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="src.clusto.drivers.devices.common.ipmixin.IPMixin-class.html#add_ip">add_ip</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">ip</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">ipman</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="IPMixin.add_ip-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="IPMixin.add_ip-expanded"><a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">ip</tt> <tt class="py-keyword">and</tt> <tt class="py-keyword">not</tt> <tt class="py-name">ipman</tt><tt class="py-op">:</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt id="link-8" class="py-name"><a title="src.clusto.exceptions.ResourceException" class="py-name" href="#" onclick="return doclink('link-8', 'ResourceException', 'link-7');">ResourceException</a></tt><tt class="py-op">(</tt><tt class="py-string">'If no ip is specified then an ipmanager must be specified'</tt><tt class="py-op">)</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line">        <tt class="py-keyword">elif</tt> <tt class="py-name">ip</tt><tt class="py-op">:</tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line">             </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">ipman</tt><tt class="py-op">:</tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line">                <tt class="py-name">ipman</tt> <tt class="py-op">=</tt> <tt class="py-name">IPManager</tt><tt class="py-op">.</tt><tt class="py-name">get_ip_manager</tt><tt class="py-op">(</tt><tt class="py-name">ip</tt><tt class="py-op">)</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">ipman</tt><tt class="py-op">.</tt><tt class="py-name">allocate</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">ip</tt><tt class="py-op">)</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">ipman</tt><tt class="py-op">.</tt><tt class="py-name">allocate</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line">             </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line">             </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line">         </tt>
+<a name="IPMixin.has_ip"></a><div id="IPMixin.has_ip-def"><a name="L32"></a><tt class="py-lineno">32</tt> <a class="py-toggle" href="#" id="IPMixin.has_ip-toggle" onclick="return toggle('IPMixin.has_ip');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="src.clusto.drivers.devices.common.ipmixin.IPMixin-class.html#has_ip">has_ip</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">ip</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="IPMixin.has_ip-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="IPMixin.has_ip-expanded"><a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line">        <tt class="py-name">ipman</tt> <tt class="py-op">=</tt> <tt class="py-name">IPManager</tt><tt class="py-op">.</tt><tt class="py-name">get_ip_manager</tt><tt class="py-op">(</tt><tt class="py-name">ip</tt><tt class="py-op">)</tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt> <tt class="py-keyword">in</tt> <tt class="py-name">ipman</tt><tt class="py-op">.</tt><tt class="py-name">owners</tt><tt class="py-op">(</tt><tt class="py-name">ip</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line"> </tt>
+<a name="IPMixin.get_ips"></a><div id="IPMixin.get_ips-def"><a name="L38"></a><tt class="py-lineno">38</tt> <a class="py-toggle" href="#" id="IPMixin.get_ips-toggle" onclick="return toggle('IPMixin.get_ips');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="src.clusto.drivers.devices.common.ipmixin.IPMixin-class.html#get_ips">get_ips</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="IPMixin.get_ips-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="IPMixin.get_ips-expanded"><a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line">        <tt class="py-docstring">"""Get a list of IPs for this Entity in ipstring format"""</tt> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line"> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">attr_values</tt><tt class="py-op">(</tt><tt class="py-name">IPManager</tt><tt class="py-op">.</tt><tt class="py-name">_attr_name</tt><tt class="py-op">,</tt> <tt id="link-9" class="py-name" targets="Variable src.clusto.schema.Attribute.subkey=src.clusto.schema.Attribute-class.html#subkey"><a title="src.clusto.schema.Attribute.subkey" class="py-name" href="#" onclick="return doclink('link-9', 'subkey', 'link-9');">subkey</a></tt><tt class="py-op">=</tt><tt class="py-string">'ipstring'</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">         </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line"> </tt>
+<a name="IPMixin.bind_ip_to_osport"></a><div id="IPMixin.bind_ip_to_osport-def"><a name="L44"></a><tt class="py-lineno">44</tt> <a class="py-toggle" href="#" id="IPMixin.bind_ip_to_osport-toggle" onclick="return toggle('IPMixin.bind_ip_to_osport');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="src.clusto.drivers.devices.common.ipmixin.IPMixin-class.html#bind_ip_to_osport">bind_ip_to_osport</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">ip</tt><tt class="py-op">,</tt> <tt class="py-param">osportname</tt><tt class="py-op">,</tt> <tt class="py-param">ipman</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">porttype</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">portnum</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="IPMixin.bind_ip_to_osport-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="IPMixin.bind_ip_to_osport-expanded"><a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line">        <tt class="py-docstring">"""bind an IP to an os port and optionally also asign the os port name</tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line"><tt class="py-docstring">        to a physical port</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line"><tt class="py-docstring">        If the given ip is already allocated to this device then use it.  If</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line"><tt class="py-docstring">        it isn't, try to allocate it from a matching IPManager.</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line"> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">porttype</tt> <tt class="py-op">!=</tt> <tt class="py-name">None</tt><tt class="py-op">)</tt> <tt class="py-op">^</tt> <tt class="py-op">(</tt><tt class="py-name">portnum</tt> <tt class="py-op">!=</tt> <tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">                <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"both portype and portnum need to be specified or set to None"</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">             </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">            <tt id="link-10" class="py-name"><a title="src.clusto" class="py-name" href="#" onclick="return doclink('link-10', 'clusto', 'link-0');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Function src.clusto.begin_transaction()=src.clusto-module.html#begin_transaction"><a title="src.clusto.begin_transaction" class="py-name" href="#" onclick="return doclink('link-11', 'begin_transaction', 'link-11');">begin_transaction</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line"> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Method src.clusto.drivers.devices.common.ipmixin.IPMixin.has_ip()=src.clusto.drivers.devices.common.ipmixin.IPMixin-class.html#has_ip"><a title="src.clusto.drivers.devices.common.ipmixin.IPMixin.has_ip" class="py-name" href="#" onclick="return doclink('link-12', 'has_ip', 'link-12');">has_ip</a></tt><tt class="py-op">(</tt><tt class="py-name">ip</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">ipman</tt><tt class="py-op">:</tt> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line">                    <tt class="py-name">ipman</tt> <tt class="py-op">=</tt> <tt class="py-name">IPManager</tt><tt class="py-op">.</tt><tt class="py-name">get_ip_manager</tt><tt class="py-op">(</tt><tt class="py-name">ip</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line"> </tt>
+<a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line">                <tt class="py-name">ipman</tt><tt class="py-op">.</tt><tt class="py-name">allocate</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">ip</tt><tt class="py-op">)</tt> </tt>
+<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line"> </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">                <tt id="link-13" class="py-name"><a title="src.clusto" class="py-name" href="#" onclick="return doclink('link-13', 'clusto', 'link-0');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Function src.clusto.flush()=src.clusto-module.html#flush"><a title="src.clusto.flush" class="py-name" href="#" onclick="return doclink('link-14', 'flush', 'link-14');">flush</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line">            <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line">                <tt class="py-name">ipman</tt> <tt class="py-op">=</tt> <tt class="py-name">IPManager</tt><tt class="py-op">.</tt><tt class="py-name">get_ip_manager</tt><tt class="py-op">(</tt><tt class="py-name">ip</tt><tt class="py-op">)</tt> </tt>
+<a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line"> </tt>
+<a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line">            <tt class="py-name">ipattrs</tt> <tt class="py-op">=</tt> <tt class="py-name">ipman</tt><tt class="py-op">.</tt><tt class="py-name">get_resource_attrs</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">ip</tt><tt class="py-op">)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line"> </tt>
+<a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">porttype</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt> <tt class="py-keyword">and</tt> <tt class="py-name">portnum</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L73"></a><tt class="py-lineno">73</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method src.clusto.drivers.devices.common.portmixin.PortMixin.set_port_attr()=src.clusto.drivers.devices.common.portmixin.PortMixin-class.html#set_port_attr"><a title="src.clusto.drivers.devices.common.portmixin.PortMixin.set_port_attr" class="py-name" href="#" onclick="return doclink('link-15', 'set_port_attr', 'link-15');">set_port_attr</a></tt><tt class="py-op">(</tt><tt class="py-name">porttype</tt><tt class="py-op">,</tt> <tt class="py-name">portnum</tt><tt class="py-op">,</tt> <tt class="py-string">'osportname'</tt><tt class="py-op">,</tt> <tt class="py-name">osportname</tt><tt class="py-op">)</tt> </tt>
+<a name="L74"></a><tt class="py-lineno">74</tt>  <tt class="py-line"> </tt>
+<a name="L75"></a><tt class="py-lineno">75</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">set_attr</tt><tt class="py-op">(</tt><tt class="py-name">ipattrs</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Variable src.clusto.schema.Attribute.key=src.clusto.schema.Attribute-class.html#key"><a title="src.clusto.schema.Attribute.key" class="py-name" href="#" onclick="return doclink('link-16', 'key', 'link-16');">key</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L76"></a><tt class="py-lineno">76</tt>  <tt class="py-line">                         <tt id="link-17" class="py-name" targets="Variable src.clusto.schema.Attribute.number=src.clusto.schema.Attribute-class.html#number"><a title="src.clusto.schema.Attribute.number" class="py-name" href="#" onclick="return doclink('link-17', 'number', 'link-17');">number</a></tt><tt class="py-op">=</tt><tt class="py-name">ipattrs</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="src.clusto.schema.Attribute.number" class="py-name" href="#" onclick="return doclink('link-18', 'number', 'link-17');">number</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line">                         <tt id="link-19" class="py-name"><a title="src.clusto.schema.Attribute.subkey" class="py-name" href="#" onclick="return doclink('link-19', 'subkey', 'link-9');">subkey</a></tt><tt class="py-op">=</tt><tt class="py-string">'osportname'</tt><tt class="py-op">,</tt> </tt>
+<a name="L78"></a><tt class="py-lineno">78</tt>  <tt class="py-line">                         <tt id="link-20" class="py-name" targets="Variable src.clusto.schema.Attribute.value=src.clusto.schema.Attribute-class.html#value,Variable src.clusto.schema.Counter.value=src.clusto.schema.Counter-class.html#value"><a title="src.clusto.schema.Attribute.value
+src.clusto.schema.Counter.value" class="py-name" href="#" onclick="return doclink('link-20', 'value', 'link-20');">value</a></tt><tt class="py-op">=</tt><tt class="py-name">osportname</tt><tt class="py-op">)</tt> </tt>
+<a name="L79"></a><tt class="py-lineno">79</tt>  <tt class="py-line"> </tt>
+<a name="L80"></a><tt class="py-lineno">80</tt>  <tt class="py-line">            <tt id="link-21" class="py-name"><a title="src.clusto" class="py-name" href="#" onclick="return doclink('link-21', 'clusto', 'link-0');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Function src.clusto.commit()=src.clusto-module.html#commit"><a title="src.clusto.commit" class="py-name" href="#" onclick="return doclink('link-22', 'commit', 'link-22');">commit</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L81"></a><tt class="py-lineno">81</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">,</tt> <tt class="py-name">x</tt><tt class="py-op">:</tt> </tt>
+<a name="L82"></a><tt class="py-lineno">82</tt>  <tt class="py-line">            <tt id="link-23" class="py-name"><a title="src.clusto" class="py-name" href="#" onclick="return doclink('link-23', 'clusto', 'link-0');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-24" class="py-name" targets="Function src.clusto.rollback_transaction()=src.clusto-module.html#rollback_transaction"><a title="src.clusto.rollback_transaction" class="py-name" href="#" onclick="return doclink('link-24', 'rollback_transaction', 'link-24');">rollback_transaction</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L83"></a><tt class="py-lineno">83</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt class="py-name">x</tt> </tt>
+</div></div><a name="L84"></a><tt class="py-lineno">84</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="src.clusto-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Mar  8 10:46:21 2011
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

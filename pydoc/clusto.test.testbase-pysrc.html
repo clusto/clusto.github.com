@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>clusto.test.testbase</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="clusto-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="clusto-module.html">Package&nbsp;clusto</a> ::
+        <a href="clusto.test-module.html">Package&nbsp;test</a> ::
+        Module&nbsp;testbase
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="clusto.test.testbase-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="clusto.test.testbase-module.html">Module clusto.test.testbase</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sys</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">os</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt id="link-0" class="py-name" targets="Method clusto.drivers.base.driver.Driver.insert()=clusto.drivers.base.driver.Driver-class.html#insert,Method clusto.drivers.categories.pool.ExclusivePool.insert()=clusto.drivers.categories.pool.ExclusivePool-class.html#insert,Method clusto.drivers.categories.pool.Pool.insert()=clusto.drivers.categories.pool.Pool-class.html#insert,Method clusto.drivers.categories.pool.UniquePool.insert()=clusto.drivers.categories.pool.UniquePool-class.html#insert,Method clusto.drivers.locations.racks.basicrack.BasicRack.insert()=clusto.drivers.locations.racks.basicrack.BasicRack-class.html#insert,Method clusto.drivers.resourcemanagers.vmmanager.VMManager.insert()=clusto.drivers.resourcemanagers.vmmanager.VMManager-class.html#insert,Method clusto.services.http.EntityAPI.insert()=clusto.services.http.EntityAPI-class.html#insert,Method clusto.services.http.RackAPI.insert()=clusto.services.http.RackAPI-class.html#insert"><a title="clusto.drivers.base.driver.Driver.insert
+clusto.drivers.categories.pool.ExclusivePool.insert
+clusto.drivers.categories.pool.Pool.insert
+clusto.drivers.categories.pool.UniquePool.insert
+clusto.drivers.locations.racks.basicrack.BasicRack.insert
+clusto.drivers.resourcemanagers.vmmanager.VMManager.insert
+clusto.services.http.EntityAPI.insert
+clusto.services.http.RackAPI.insert" class="py-name" href="#" onclick="return doclink('link-0', 'insert', 'link-0');">insert</a></tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">curdir</tt><tt class="py-op">)</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">unittest</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Package clusto=clusto-module.html"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-1', 'clusto', 'link-1');">clusto</a></tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">ConfigParser</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt id="link-2" class="py-name" targets="Variable clusto.test.testbase.DB=clusto.test.testbase-module.html#DB"><a title="clusto.test.testbase.DB" class="py-name" href="#" onclick="return doclink('link-2', 'DB', 'link-2');">DB</a></tt><tt class="py-op">=</tt><tt class="py-string">'sqlite:///:memory:'</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt id="link-3" class="py-name" targets="Variable clusto.test.testbase.ECHO=clusto.test.testbase-module.html#ECHO"><a title="clusto.test.testbase.ECHO" class="py-name" href="#" onclick="return doclink('link-3', 'ECHO', 'link-3');">ECHO</a></tt><tt class="py-op">=</tt><tt class="py-name">False</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"> </tt>
+<a name="ClustoTestResult"></a><div id="ClustoTestResult-def"><a name="L16"></a><tt class="py-lineno">16</tt> <a class="py-toggle" href="#" id="ClustoTestResult-toggle" onclick="return toggle('ClustoTestResult');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="clusto.test.testbase.ClustoTestResult-class.html">ClustoTestResult</a><tt class="py-op">(</tt><tt class="py-base-class">unittest</tt><tt class="py-op">.</tt><tt class="py-base-class">TestResult</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ClustoTestResult-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="ClustoTestResult-expanded"><a name="ClustoTestResult.addError"></a><div id="ClustoTestResult.addError-def"><a name="L17"></a><tt class="py-lineno">17</tt> <a class="py-toggle" href="#" id="ClustoTestResult.addError-toggle" onclick="return toggle('ClustoTestResult.addError');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="clusto.test.testbase.ClustoTestResult-class.html#addError">addError</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">test</tt><tt class="py-op">,</tt> <tt class="py-param">err</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ClustoTestResult.addError-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="ClustoTestResult.addError-expanded"><a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line">        <tt class="py-docstring">"""Called when an error has occurred. 'err' is a tuple of values as</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-docstring">        returned by sys.exc_info().</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-op">&gt;&gt;</tt><tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">stderr</tt><tt class="py-op">,</tt> <tt class="py-string">"ERROR HERE!"</tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line">        <tt id="link-4" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-4', 'clusto', 'link-1');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Function clusto.rollback_transaction()=clusto-module.html#rollback_transaction"><a title="clusto.rollback_transaction" class="py-name" href="#" onclick="return doclink('link-5', 'rollback_transaction', 'link-5');">rollback_transaction</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">errors</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt id="link-6" class="py-name" targets="Package clusto.test=clusto.test-module.html,Module clusto.test.test=clusto.test.test-module.html"><a title="clusto.test
+clusto.test.test" class="py-name" href="#" onclick="return doclink('link-6', 'test', 'link-6');">test</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_exc_info_to_string</tt><tt class="py-op">(</tt><tt class="py-name">err</tt><tt class="py-op">,</tt> <tt id="link-7" class="py-name"><a title="clusto.test
+clusto.test.test" class="py-name" href="#" onclick="return doclink('link-7', 'test', 'link-6');">test</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line">         </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"> </tt>
+<a name="ClustoTestBase"></a><div id="ClustoTestBase-def"><a name="L27"></a><tt class="py-lineno">27</tt> <a class="py-toggle" href="#" id="ClustoTestBase-toggle" onclick="return toggle('ClustoTestBase');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="clusto.test.testbase.ClustoTestBase-class.html">ClustoTestBase</a><tt class="py-op">(</tt><tt class="py-base-class">unittest</tt><tt class="py-op">.</tt><tt class="py-base-class">TestCase</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ClustoTestBase-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="ClustoTestBase-expanded"><a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"> </tt>
+<a name="ClustoTestBase.data"></a><div id="ClustoTestBase.data-def"><a name="L31"></a><tt class="py-lineno">31</tt> <a class="py-toggle" href="#" id="ClustoTestBase.data-toggle" onclick="return toggle('ClustoTestBase.data');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="clusto.test.testbase.ClustoTestBase-class.html#data">data</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ClustoTestBase.data-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="ClustoTestBase.data-expanded"><a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">     </tt>
+<a name="ClustoTestBase.setUp"></a><div id="ClustoTestBase.setUp-def"><a name="L34"></a><tt class="py-lineno">34</tt> <a class="py-toggle" href="#" id="ClustoTestBase.setUp-toggle" onclick="return toggle('ClustoTestBase.setUp');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="clusto.test.testbase.ClustoTestBase-class.html#setUp">setUp</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ClustoTestBase.setUp-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="ClustoTestBase.setUp-expanded"><a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">        <tt id="link-8" class="py-name" targets="Function clusto.services.config.conf()=clusto.services.config-module.html#conf"><a title="clusto.services.config.conf" class="py-name" href="#" onclick="return doclink('link-8', 'conf', 'link-8');">conf</a></tt> <tt class="py-op">=</tt> <tt class="py-name">ConfigParser</tt><tt class="py-op">.</tt><tt class="py-name">ConfigParser</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">        <tt id="link-9" class="py-name"><a title="clusto.services.config.conf" class="py-name" href="#" onclick="return doclink('link-9', 'conf', 'link-8');">conf</a></tt><tt class="py-op">.</tt><tt class="py-name">add_section</tt><tt class="py-op">(</tt><tt class="py-string">'clusto'</tt><tt class="py-op">)</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">        <tt id="link-10" class="py-name"><a title="clusto.services.config.conf" class="py-name" href="#" onclick="return doclink('link-10', 'conf', 'link-8');">conf</a></tt><tt class="py-op">.</tt><tt class="py-name">set</tt><tt class="py-op">(</tt><tt class="py-string">'clusto'</tt><tt class="py-op">,</tt> <tt class="py-string">'dsn'</tt><tt class="py-op">,</tt> <tt id="link-11" class="py-name"><a title="clusto.test.testbase.DB" class="py-name" href="#" onclick="return doclink('link-11', 'DB', 'link-2');">DB</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line">        <tt id="link-12" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-12', 'clusto', 'link-1');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Variable clusto.schema.SESSION=clusto.schema-module.html#SESSION,Variable clusto.test.drivers.categories'.SESSION=clusto.test.drivers.categories%27-module.html#SESSION,Variable clusto.test.drivers.resourcemanagers'.SESSION=clusto.test.drivers.resourcemanagers%27-module.html#SESSION"><a title="clusto.schema.SESSION
+clusto.test.drivers.categories'.SESSION
+clusto.test.drivers.resourcemanagers'.SESSION" class="py-name" href="#" onclick="return doclink('link-13', 'SESSION', 'link-13');">SESSION</a></tt><tt class="py-op">.</tt><tt class="py-name">clusto_version</tt> <tt class="py-op">=</tt> <tt id="link-14" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-14', 'clusto', 'link-1');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Function clusto.schema.working_version()=clusto.schema-module.html#working_version"><a title="clusto.schema.working_version" class="py-name" href="#" onclick="return doclink('link-15', 'working_version', 'link-15');">working_version</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">        <tt id="link-16" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-16', 'clusto', 'link-1');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Function clusto.connect()=clusto-module.html#connect,Method clusto.drivers.devices.consoleservers.basicconsoleserver.BasicConsoleServer.connect()=clusto.drivers.devices.consoleservers.basicconsoleserver.BasicConsoleServer-class.html#connect,Method clusto.drivers.devices.consoleservers.opengear.OpenGearCM4148.connect()=clusto.drivers.devices.consoleservers.opengear.OpenGearCM4148-class.html#connect"><a title="clusto.connect
+clusto.drivers.devices.consoleservers.basicconsoleserver.BasicConsoleServer.connect
+clusto.drivers.devices.consoleservers.opengear.OpenGearCM4148.connect" class="py-name" href="#" onclick="return doclink('link-17', 'connect', 'link-17');">connect</a></tt><tt class="py-op">(</tt><tt id="link-18" class="py-name"><a title="clusto.services.config.conf" class="py-name" href="#" onclick="return doclink('link-18', 'conf', 'link-8');">conf</a></tt><tt class="py-op">,</tt><tt class="py-name">echo</tt><tt class="py-op">=</tt><tt id="link-19" class="py-name"><a title="clusto.test.testbase.ECHO" class="py-name" href="#" onclick="return doclink('link-19', 'ECHO', 'link-3');">ECHO</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line">        <tt id="link-20" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-20', 'clusto', 'link-1');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Function clusto.clear()=clusto-module.html#clear"><a title="clusto.clear" class="py-name" href="#" onclick="return doclink('link-21', 'clear', 'link-21');">clear</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">        <tt id="link-22" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-22', 'clusto', 'link-1');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="clusto.schema.SESSION
+clusto.test.drivers.categories'.SESSION
+clusto.test.drivers.resourcemanagers'.SESSION" class="py-name" href="#" onclick="return doclink('link-23', 'SESSION', 'link-13');">SESSION</a></tt><tt class="py-op">.</tt><tt class="py-name">close</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line">        <tt id="link-24" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-24', 'clusto', 'link-1');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-25" class="py-name" targets="Function clusto.init_clusto()=clusto-module.html#init_clusto"><a title="clusto.init_clusto" class="py-name" href="#" onclick="return doclink('link-25', 'init_clusto', 'link-25');">init_clusto</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name" targets="Method clusto.test.base.clustotests.TestClusto.data()=clusto.test.base.clustotests.TestClusto-class.html#data,Method clusto.test.base.drivertests.TestDriverQueries.data()=clusto.test.base.drivertests.TestDriverQueries-class.html#data,Method clusto.test.base.entitytests.TestEntityAttributes.data()=clusto.test.base.entitytests.TestEntityAttributes-class.html#data,Method clusto.test.base.entitytests.TestEntityReferences.data()=clusto.test.base.entitytests.TestEntityReferences-class.html#data,Method clusto.test.drivers.categories.pooltests.PoolTests.data()=clusto.test.drivers.categories.pooltests.PoolTests-class.html#data,Method clusto.test.drivers.common.porttests.PortTests.data()=clusto.test.drivers.common.porttests.PortTests-class.html#data,Method clusto.test.drivers.devices.servers.basicservertest'.BasicServerTest.data()=clusto.test.drivers.devices.servers.basicservertest%27.BasicServerTest-class.html#data,Method clusto.test.drivers.locations.racks.basicracktests'.BasicRackTest.data()=clusto.test.drivers.locations.racks.basicracktests%27.BasicRackTest-class.html#data,Method clusto.test.drivers.resourcemanagers.ipmanagertest.IPManagerTest.data()=clusto.test.drivers.resourcemanagers.ipmanagertest.IPManagerTest-class.html#data,Method clusto.test.drivers.resourcemanagers.simplenamemanagertest.SimpleEntityNameManagerTests.data()=clusto.test.drivers.resourcemanagers.simplenamemanagertest.SimpleEntityNameManagerTests-class.html#data,Method clusto.test.drivers.resourcemanagers.simplenamemanagertest.SimpleNameManagerTests.data()=clusto.test.drivers.resourcemanagers.simplenamemanagertest.SimpleNameManagerTests-class.html#data,Method clusto.test.drivers.resourcemanagers.simplenummanagertest.SimpleNumManagerTests.data()=clusto.test.drivers.resourcemanagers.simplenummanagertest.SimpleNumManagerTests-class.html#data,Method clusto.test.drivers.resourcemanagers.vmmanagertest.EC2VMManagerTest.data()=clusto.test.drivers.resourcemanagers.vmmanagertest.EC2VMManagerTest-class.html#data,Method clusto.test.drivers.resourcemanagers.vmmanagertest.VMManagerTest.data()=clusto.test.drivers.resourcemanagers.vmmanagertest.VMManagerTest-class.html#data,Method clusto.test.testbase.ClustoTestBase.data()=clusto.test.testbase.ClustoTestBase-class.html#data,Method clusto.test.usage.clusterusage.ClusterUsageTest.data()=clusto.test.usage.clusterusage.ClusterUsageTest-class.html#data,Method clusto.test.usage.serverinstallation.ServerInstallationTest.data()=clusto.test.usage.serverinstallation.ServerInstallationTest-class.html#data"><a title="clusto.test.base.clustotests.TestClusto.data
+clusto.test.base.drivertests.TestDriverQueries.data
+clusto.test.base.entitytests.TestEntityAttributes.data
+clusto.test.base.entitytests.TestEntityReferences.data
+clusto.test.drivers.categories.pooltests.PoolTests.data
+clusto.test.drivers.common.porttests.PortTests.data
+clusto.test.drivers.devices.servers.basicservertest'.BasicServerTest.data
+clusto.test.drivers.locations.racks.basicracktests'.BasicRackTest.data
+clusto.test.drivers.resourcemanagers.ipmanagertest.IPManagerTest.data
+clusto.test.drivers.resourcemanagers.simplenamemanagertest.SimpleEntityNameManagerTests.data
+clusto.test.drivers.resourcemanagers.simplenamemanagertest.SimpleNameManagerTests.data
+clusto.test.drivers.resourcemanagers.simplenummanagertest.SimpleNumManagerTests.data
+clusto.test.drivers.resourcemanagers.vmmanagertest.EC2VMManagerTest.data
+clusto.test.drivers.resourcemanagers.vmmanagertest.VMManagerTest.data
+clusto.test.testbase.ClustoTestBase.data
+clusto.test.usage.clusterusage.ClusterUsageTest.data
+clusto.test.usage.serverinstallation.ServerInstallationTest.data" class="py-name" href="#" onclick="return doclink('link-26', 'data', 'link-26');">data</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line"> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line"> </tt>
+<a name="ClustoTestBase.tearDown"></a><div id="ClustoTestBase.tearDown-def"><a name="L47"></a><tt class="py-lineno">47</tt> <a class="py-toggle" href="#" id="ClustoTestBase.tearDown-toggle" onclick="return toggle('ClustoTestBase.tearDown');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="clusto.test.testbase.ClustoTestBase-class.html#tearDown">tearDown</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ClustoTestBase.tearDown-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="ClustoTestBase.tearDown-expanded"><a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt id="link-27" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-27', 'clusto', 'link-1');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-28" class="py-name"><a title="clusto.schema.SESSION
+clusto.test.drivers.categories'.SESSION
+clusto.test.drivers.resourcemanagers'.SESSION" class="py-name" href="#" onclick="return doclink('link-28', 'SESSION', 'link-13');">SESSION</a></tt><tt class="py-op">.</tt><tt class="py-name">is_active</tt><tt class="py-op">:</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"SESSION IS STILL ACTIVE in %s"</tt> <tt class="py-op">%</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__class__</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line"> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line">        <tt id="link-29" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-29', 'clusto', 'link-1');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="clusto.clear" class="py-name" href="#" onclick="return doclink('link-30', 'clear', 'link-21');">clear</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">        <tt id="link-31" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-31', 'clusto', 'link-1');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-32" class="py-name" targets="Function clusto.disconnect()=clusto-module.html#disconnect"><a title="clusto.disconnect" class="py-name" href="#" onclick="return doclink('link-32', 'disconnect', 'link-32');">disconnect</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">        <tt id="link-33" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-33', 'clusto', 'link-1');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-34" class="py-name" targets="Variable clusto.schema.METADATA=clusto.schema-module.html#METADATA,Variable clusto.test.drivers.categories'.METADATA=clusto.test.drivers.categories%27-module.html#METADATA,Variable clusto.test.drivers.resourcemanagers'.METADATA=clusto.test.drivers.resourcemanagers%27-module.html#METADATA"><a title="clusto.schema.METADATA
+clusto.test.drivers.categories'.METADATA
+clusto.test.drivers.resourcemanagers'.METADATA" class="py-name" href="#" onclick="return doclink('link-34', 'METADATA', 'link-34');">METADATA</a></tt><tt class="py-op">.</tt><tt class="py-name">drop_all</tt><tt class="py-op">(</tt><tt id="link-35" class="py-name"><a title="clusto" class="py-name" href="#" onclick="return doclink('link-35', 'clusto', 'link-1');">clusto</a></tt><tt class="py-op">.</tt><tt id="link-36" class="py-name"><a title="clusto.schema.SESSION
+clusto.test.drivers.categories'.SESSION
+clusto.test.drivers.resourcemanagers'.SESSION" class="py-name" href="#" onclick="return doclink('link-36', 'SESSION', 'link-13');">SESSION</a></tt><tt class="py-op">.</tt><tt class="py-name">bind</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line"> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line"> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line"> </tt>
+<a name="ClustoTestBase.defaultTestResult"></a><div id="ClustoTestBase.defaultTestResult-def"><a name="L57"></a><tt class="py-lineno">57</tt> <a class="py-toggle" href="#" id="ClustoTestBase.defaultTestResult-toggle" onclick="return toggle('ClustoTestBase.defaultTestResult');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="clusto.test.testbase.ClustoTestBase-class.html#defaultTestResult">defaultTestResult</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ClustoTestBase.defaultTestResult-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="ClustoTestBase.defaultTestResult-expanded"><a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">hasattr</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_testresult</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_testresult</tt> <tt class="py-op">=</tt> <tt id="link-37" class="py-name" targets="Class clusto.test.testbase.ClustoTestResult=clusto.test.testbase.ClustoTestResult-class.html"><a title="clusto.test.testbase.ClustoTestResult" class="py-name" href="#" onclick="return doclink('link-37', 'ClustoTestResult', 'link-37');">ClustoTestResult</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line"> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_testresult</tt> </tt>
+</div></div><a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="clusto-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Mar  8 10:47:22 2011
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

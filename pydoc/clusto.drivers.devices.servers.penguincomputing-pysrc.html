@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>clusto.drivers.devices.servers.penguincomputing</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="clusto-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="clusto-module.html">Package&nbsp;clusto</a> ::
+        <a href="clusto.drivers-module.html">Package&nbsp;drivers</a> ::
+        <a href="clusto.drivers.devices-module.html">Package&nbsp;devices</a> ::
+        <a href="clusto.drivers.devices.servers-module.html">Package&nbsp;servers</a> ::
+        Module&nbsp;penguincomputing
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="clusto.drivers.devices.servers.penguincomputing-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="clusto.drivers.devices.servers.penguincomputing-module.html">Module clusto.drivers.devices.servers.penguincomputing</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-docstring">Drivers for Penguin Computing Servers</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Module clusto.drivers.devices.servers.basicserver=clusto.drivers.devices.servers.basicserver-module.html"><a title="clusto.drivers.devices.servers.basicserver" class="py-name" href="#" onclick="return doclink('link-0', 'basicserver', 'link-0');">basicserver</a></tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Class clusto.drivers.devices.servers.basicserver.BasicServer=clusto.drivers.devices.servers.basicserver.BasicServer-class.html"><a title="clusto.drivers.devices.servers.basicserver.BasicServer" class="py-name" href="#" onclick="return doclink('link-1', 'BasicServer', 'link-1');">BasicServer</a></tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"> </tt>
+<a name="PenguinServer"></a><div id="PenguinServer-def"><a name="L7"></a><tt class="py-lineno"> 7</tt> <a class="py-toggle" href="#" id="PenguinServer-toggle" onclick="return toggle('PenguinServer');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="clusto.drivers.devices.servers.penguincomputing.PenguinServer-class.html">PenguinServer</a><tt class="py-op">(</tt><tt class="py-base-class">BasicServer</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PenguinServer-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="PenguinServer-expanded"><a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line">    <tt id="link-2" class="py-name" targets="Variable clusto.drivers.base.clustometa.ClustoMeta._driver_name=clusto.drivers.base.clustometa.ClustoMeta-class.html#_driver_name,Variable clusto.drivers.base.device.Device._driver_name=clusto.drivers.base.device.Device-class.html#_driver_name,Variable clusto.drivers.base.driver.Driver._driver_name=clusto.drivers.base.driver.Driver-class.html#_driver_name,Variable clusto.drivers.base.location.Location._driver_name=clusto.drivers.base.location.Location-class.html#_driver_name,Variable clusto.drivers.base.resourcemanager.ResourceManager._driver_name=clusto.drivers.base.resourcemanager.ResourceManager-class.html#_driver_name,Variable clusto.drivers.categories.pool.ExclusivePool._driver_name=clusto.drivers.categories.pool.ExclusivePool-class.html#_driver_name,Variable clusto.drivers.categories.pool.Pool._driver_name=clusto.drivers.categories.pool.Pool-class.html#_driver_name,Variable clusto.drivers.categories.pool.UniquePool._driver_name=clusto.drivers.categories.pool.UniquePool-class.html#_driver_name,Variable clusto.drivers.devices.appliance.basicappliance.BasicAppliance._driver_name=clusto.drivers.devices.appliance.basicappliance.BasicAppliance-class.html#_driver_name,Variable clusto.drivers.devices.appliance.netscaler.Netscaler._driver_name=clusto.drivers.devices.appliance.netscaler.Netscaler-class.html#_driver_name,Variable clusto.drivers.devices.appliance.netscaler.Netscaler10010._driver_name=clusto.drivers.devices.appliance.netscaler.Netscaler10010-class.html#_driver_name,Variable clusto.drivers.devices.appliance.netscaler.Netscaler17000._driver_name=clusto.drivers.devices.appliance.netscaler.Netscaler17000-class.html#_driver_name,Variable clusto.drivers.devices.consoleservers.basicconsoleserver.BasicConsoleServer._driver_name=clusto.drivers.devices.consoleservers.basicconsoleserver.BasicConsoleServer-class.html#_driver_name,Variable clusto.drivers.devices.consoleservers.opengear.OpenGearCM4148._driver_name=clusto.drivers.devices.consoleservers.opengear.OpenGearCM4148-class.html#_driver_name,Variable clusto.drivers.devices.networkswitches.basicnetworkswitch.BasicNetworkSwitch._driver_name=clusto.drivers.devices.networkswitches.basicnetworkswitch.BasicNetworkSwitch-class.html#_driver_name,Variable clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco2960._driver_name=clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco2960-class.html#_driver_name,Variable clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco3560._driver_name=clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco3560-class.html#_driver_name,Variable clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco4948._driver_name=clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco4948-class.html#_driver_name,Variable clusto.drivers.devices.powerstrips.basicpowerstrip.BasicPowerStrip._driver_name=clusto.drivers.devices.powerstrips.basicpowerstrip.BasicPowerStrip-class.html#_driver_name,Variable clusto.drivers.devices.powerstrips.servertech.PowerTowerXM._driver_name=clusto.drivers.devices.powerstrips.servertech.PowerTowerXM-class.html#_driver_name,Variable clusto.drivers.devices.servers.basicserver.BasicServer._driver_name=clusto.drivers.devices.servers.basicserver.BasicServer-class.html#_driver_name,Variable clusto.drivers.devices.servers.basicserver.BasicVirtualServer._driver_name=clusto.drivers.devices.servers.basicserver.BasicVirtualServer-class.html#_driver_name,Variable clusto.drivers.devices.servers.ec2server.EC2VirtualServer._driver_name=clusto.drivers.devices.servers.ec2server.EC2VirtualServer-class.html#_driver_name,Variable clusto.drivers.devices.servers.kvmvirtualserver.KVMVirtualServer._driver_name=clusto.drivers.devices.servers.kvmvirtualserver.KVMVirtualServer-class.html#_driver_name,Variable clusto.drivers.devices.servers.penguincomputing.PenguinServer._driver_name=clusto.drivers.devices.servers.penguincomputing.PenguinServer-class.html#_driver_name,Variable clusto.drivers.devices.servers.penguincomputing.PenguinServer2U._driver_name=clusto.drivers.devices.servers.penguincomputing.PenguinServer2U-class.html#_driver_name,Variable clusto.drivers.devices.servers.xenvirtualserver.XenVirtualServer._driver_name=clusto.drivers.devices.servers.xenvirtualserver.XenVirtualServer-class.html#_driver_name,Variable clusto.drivers.locations.datacenters.basicdatacenter.BasicDatacenter._driver_name=clusto.drivers.locations.datacenters.basicdatacenter.BasicDatacenter-class.html#_driver_name,Variable clusto.drivers.locations.datacenters.equinixdatacenter.EquinixDatacenter._driver_name=clusto.drivers.locations.datacenters.equinixdatacenter.EquinixDatacenter-class.html#_driver_name,Variable clusto.drivers.locations.racks.apcrack.APCRack._driver_name=clusto.drivers.locations.racks.apcrack.APCRack-class.html#_driver_name,Variable clusto.drivers.locations.racks.basicrack.BasicRack._driver_name=clusto.drivers.locations.racks.basicrack.BasicRack-class.html#_driver_name,Variable clusto.drivers.resourcemanagers.ipmanager.IPManager._driver_name=clusto.drivers.resourcemanagers.ipmanager.IPManager-class.html#_driver_name,Variable clusto.drivers.resourcemanagers.simplenamemanager.SimpleEntityNameManager._driver_name=clusto.drivers.resourcemanagers.simplenamemanager.SimpleEntityNameManager-class.html#_driver_name,Variable clusto.drivers.resourcemanagers.simplenamemanager.SimpleNameManager._driver_name=clusto.drivers.resourcemanagers.simplenamemanager.SimpleNameManager-class.html#_driver_name,Variable clusto.drivers.resourcemanagers.simplenummanager.SimpleNumManager._driver_name=clusto.drivers.resourcemanagers.simplenummanager.SimpleNumManager-class.html#_driver_name,Variable clusto.drivers.resourcemanagers.vmmanager.EC2VMManager._driver_name=clusto.drivers.resourcemanagers.vmmanager.EC2VMManager-class.html#_driver_name,Variable clusto.drivers.resourcemanagers.vmmanager.VMManager._driver_name=clusto.drivers.resourcemanagers.vmmanager.VMManager-class.html#_driver_name,Variable clusto.drivers.resourcemanagers.vmmanager.XenVMManager._driver_name=clusto.drivers.resourcemanagers.vmmanager.XenVMManager-class.html#_driver_name,Variable clusto.test.base.drivertests.ATestDriver._driver_name=clusto.test.base.drivertests.ATestDriver-class.html#_driver_name,Variable clusto.test.drivers.common.porttests.PortLess._driver_name=clusto.test.drivers.common.porttests.PortLess-class.html#_driver_name,Variable clusto.test.drivers.common.porttests.TestDev1._driver_name=clusto.test.drivers.common.porttests.TestDev1-class.html#_driver_name,Variable clusto.test.drivers.common.porttests.TestDev2._driver_name=clusto.test.drivers.common.porttests.TestDev2-class.html#_driver_name"><a title="clusto.drivers.base.clustometa.ClustoMeta._driver_name
+clusto.drivers.base.device.Device._driver_name
+clusto.drivers.base.driver.Driver._driver_name
+clusto.drivers.base.location.Location._driver_name
+clusto.drivers.base.resourcemanager.ResourceManager._driver_name
+clusto.drivers.categories.pool.ExclusivePool._driver_name
+clusto.drivers.categories.pool.Pool._driver_name
+clusto.drivers.categories.pool.UniquePool._driver_name
+clusto.drivers.devices.appliance.basicappliance.BasicAppliance._driver_name
+clusto.drivers.devices.appliance.netscaler.Netscaler._driver_name
+clusto.drivers.devices.appliance.netscaler.Netscaler10010._driver_name
+clusto.drivers.devices.appliance.netscaler.Netscaler17000._driver_name
+clusto.drivers.devices.consoleservers.basicconsoleserver.BasicConsoleServer._driver_name
+clusto.drivers.devices.consoleservers.opengear.OpenGearCM4148._driver_name
+clusto.drivers.devices.networkswitches.basicnetworkswitch.BasicNetworkSwitch._driver_name
+clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco2960._driver_name
+clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco3560._driver_name
+clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco4948._driver_name
+clusto.drivers.devices.powerstrips.basicpowerstrip.BasicPowerStrip._driver_name
+clusto.drivers.devices.powerstrips.servertech.PowerTowerXM._driver_name
+clusto.drivers.devices.servers.basicserver.BasicServer._driver_name
+clusto.drivers.devices.servers.basicserver.BasicVirtualServer._driver_name
+clusto.drivers.devices.servers.ec2server.EC2VirtualServer._driver_name
+clusto.drivers.devices.servers.kvmvirtualserver.KVMVirtualServer._driver_name
+clusto.drivers.devices.servers.penguincomputing.PenguinServer._driver_name
+clusto.drivers.devices.servers.penguincomputing.PenguinServer2U._driver_name
+clusto.drivers.devices.servers.xenvirtualserver.XenVirtualServer._driver_name
+clusto.drivers.locations.datacenters.basicdatacenter.BasicDatacenter._driver_name
+clusto.drivers.locations.datacenters.equinixdatacenter.EquinixDatacenter._driver_name
+clusto.drivers.locations.racks.apcrack.APCRack._driver_name
+clusto.drivers.locations.racks.basicrack.BasicRack._driver_name
+clusto.drivers.resourcemanagers.ipmanager.IPManager._driver_name
+clusto.drivers.resourcemanagers.simplenamemanager.SimpleEntityNameManager._driver_name
+clusto.drivers.resourcemanagers.simplenamemanager.SimpleNameManager._driver_name
+clusto.drivers.resourcemanagers.simplenummanager.SimpleNumManager._driver_name
+clusto.drivers.resourcemanagers.vmmanager.EC2VMManager._driver_name
+clusto.drivers.resourcemanagers.vmmanager.VMManager._driver_name
+clusto.drivers.resourcemanagers.vmmanager.XenVMManager._driver_name
+clusto.test.base.drivertests.ATestDriver._driver_name
+clusto.test.drivers.common.porttests.PortLess._driver_name
+clusto.test.drivers.common.porttests.TestDev1._driver_name
+clusto.test.drivers.common.porttests.TestDev2._driver_name" class="py-name" href="#" onclick="return doclink('link-2', '_driver_name', 'link-2');">_driver_name</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"penguinserver"</tt> </tt>
+</div><a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"> </tt>
+<a name="PenguinServer2U"></a><div id="PenguinServer2U-def"><a name="L10"></a><tt class="py-lineno">10</tt> <a class="py-toggle" href="#" id="PenguinServer2U-toggle" onclick="return toggle('PenguinServer2U');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="clusto.drivers.devices.servers.penguincomputing.PenguinServer2U-class.html">PenguinServer2U</a><tt class="py-op">(</tt><tt class="py-base-class">PenguinServer</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PenguinServer2U-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="PenguinServer2U-expanded"><a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line">    <tt id="link-3" class="py-name"><a title="clusto.drivers.base.clustometa.ClustoMeta._driver_name
+clusto.drivers.base.device.Device._driver_name
+clusto.drivers.base.driver.Driver._driver_name
+clusto.drivers.base.location.Location._driver_name
+clusto.drivers.base.resourcemanager.ResourceManager._driver_name
+clusto.drivers.categories.pool.ExclusivePool._driver_name
+clusto.drivers.categories.pool.Pool._driver_name
+clusto.drivers.categories.pool.UniquePool._driver_name
+clusto.drivers.devices.appliance.basicappliance.BasicAppliance._driver_name
+clusto.drivers.devices.appliance.netscaler.Netscaler._driver_name
+clusto.drivers.devices.appliance.netscaler.Netscaler10010._driver_name
+clusto.drivers.devices.appliance.netscaler.Netscaler17000._driver_name
+clusto.drivers.devices.consoleservers.basicconsoleserver.BasicConsoleServer._driver_name
+clusto.drivers.devices.consoleservers.opengear.OpenGearCM4148._driver_name
+clusto.drivers.devices.networkswitches.basicnetworkswitch.BasicNetworkSwitch._driver_name
+clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco2960._driver_name
+clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco3560._driver_name
+clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco4948._driver_name
+clusto.drivers.devices.powerstrips.basicpowerstrip.BasicPowerStrip._driver_name
+clusto.drivers.devices.powerstrips.servertech.PowerTowerXM._driver_name
+clusto.drivers.devices.servers.basicserver.BasicServer._driver_name
+clusto.drivers.devices.servers.basicserver.BasicVirtualServer._driver_name
+clusto.drivers.devices.servers.ec2server.EC2VirtualServer._driver_name
+clusto.drivers.devices.servers.kvmvirtualserver.KVMVirtualServer._driver_name
+clusto.drivers.devices.servers.penguincomputing.PenguinServer._driver_name
+clusto.drivers.devices.servers.penguincomputing.PenguinServer2U._driver_name
+clusto.drivers.devices.servers.xenvirtualserver.XenVirtualServer._driver_name
+clusto.drivers.locations.datacenters.basicdatacenter.BasicDatacenter._driver_name
+clusto.drivers.locations.datacenters.equinixdatacenter.EquinixDatacenter._driver_name
+clusto.drivers.locations.racks.apcrack.APCRack._driver_name
+clusto.drivers.locations.racks.basicrack.BasicRack._driver_name
+clusto.drivers.resourcemanagers.ipmanager.IPManager._driver_name
+clusto.drivers.resourcemanagers.simplenamemanager.SimpleEntityNameManager._driver_name
+clusto.drivers.resourcemanagers.simplenamemanager.SimpleNameManager._driver_name
+clusto.drivers.resourcemanagers.simplenummanager.SimpleNumManager._driver_name
+clusto.drivers.resourcemanagers.vmmanager.EC2VMManager._driver_name
+clusto.drivers.resourcemanagers.vmmanager.VMManager._driver_name
+clusto.drivers.resourcemanagers.vmmanager.XenVMManager._driver_name
+clusto.test.base.drivertests.ATestDriver._driver_name
+clusto.test.drivers.common.porttests.PortLess._driver_name
+clusto.test.drivers.common.porttests.TestDev1._driver_name
+clusto.test.drivers.common.porttests.TestDev2._driver_name" class="py-name" href="#" onclick="return doclink('link-3', '_driver_name', 'link-2');">_driver_name</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"penguinserver2u"</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line">    <tt id="link-4" class="py-name" targets="Variable clusto.drivers.devices.appliance.basicappliance.BasicAppliance._portmeta=clusto.drivers.devices.appliance.basicappliance.BasicAppliance-class.html#_portmeta,Variable clusto.drivers.devices.appliance.netscaler.Netscaler10010._portmeta=clusto.drivers.devices.appliance.netscaler.Netscaler10010-class.html#_portmeta,Variable clusto.drivers.devices.appliance.netscaler.Netscaler17000._portmeta=clusto.drivers.devices.appliance.netscaler.Netscaler17000-class.html#_portmeta,Variable clusto.drivers.devices.common.portmixin.PortMixin._portmeta=clusto.drivers.devices.common.portmixin.PortMixin-class.html#_portmeta,Variable clusto.drivers.devices.consoleservers.basicconsoleserver.BasicConsoleServer._portmeta=clusto.drivers.devices.consoleservers.basicconsoleserver.BasicConsoleServer-class.html#_portmeta,Variable clusto.drivers.devices.consoleservers.opengear.OpenGearCM4148._portmeta=clusto.drivers.devices.consoleservers.opengear.OpenGearCM4148-class.html#_portmeta,Variable clusto.drivers.devices.networkswitches.basicnetworkswitch.BasicNetworkSwitch._portmeta=clusto.drivers.devices.networkswitches.basicnetworkswitch.BasicNetworkSwitch-class.html#_portmeta,Variable clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco2960._portmeta=clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco2960-class.html#_portmeta,Variable clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco3560._portmeta=clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco3560-class.html#_portmeta,Variable clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco4948._portmeta=clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco4948-class.html#_portmeta,Variable clusto.drivers.devices.powerstrips.basicpowerstrip.BasicPowerStrip._portmeta=clusto.drivers.devices.powerstrips.basicpowerstrip.BasicPowerStrip-class.html#_portmeta,Variable clusto.drivers.devices.powerstrips.servertech.PowerTowerXM._portmeta=clusto.drivers.devices.powerstrips.servertech.PowerTowerXM-class.html#_portmeta,Variable clusto.drivers.devices.servers.basicserver.BasicServer._portmeta=clusto.drivers.devices.servers.basicserver.BasicServer-class.html#_portmeta,Variable clusto.drivers.devices.servers.penguincomputing.PenguinServer2U._portmeta=clusto.drivers.devices.servers.penguincomputing.PenguinServer2U-class.html#_portmeta,Variable clusto.test.drivers.common.porttests.TestDev1._portmeta=clusto.test.drivers.common.porttests.TestDev1-class.html#_portmeta,Variable clusto.test.drivers.common.porttests.TestDev2._portmeta=clusto.test.drivers.common.porttests.TestDev2-class.html#_portmeta"><a title="clusto.drivers.devices.appliance.basicappliance.BasicAppliance._portmeta
+clusto.drivers.devices.appliance.netscaler.Netscaler10010._portmeta
+clusto.drivers.devices.appliance.netscaler.Netscaler17000._portmeta
+clusto.drivers.devices.common.portmixin.PortMixin._portmeta
+clusto.drivers.devices.consoleservers.basicconsoleserver.BasicConsoleServer._portmeta
+clusto.drivers.devices.consoleservers.opengear.OpenGearCM4148._portmeta
+clusto.drivers.devices.networkswitches.basicnetworkswitch.BasicNetworkSwitch._portmeta
+clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco2960._portmeta
+clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco3560._portmeta
+clusto.drivers.devices.networkswitches.cisconetworkswitch.Cisco4948._portmeta
+clusto.drivers.devices.powerstrips.basicpowerstrip.BasicPowerStrip._portmeta
+clusto.drivers.devices.powerstrips.servertech.PowerTowerXM._portmeta
+clusto.drivers.devices.servers.basicserver.BasicServer._portmeta
+clusto.drivers.devices.servers.penguincomputing.PenguinServer2U._portmeta
+clusto.test.drivers.common.porttests.TestDev1._portmeta
+clusto.test.drivers.common.porttests.TestDev2._portmeta" class="py-name" href="#" onclick="return doclink('link-4', '_portmeta', 'link-4');">_portmeta</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-string">'pwr-nema-5'</tt><tt class="py-op">:</tt> <tt class="py-op">{</tt><tt class="py-string">'numports'</tt><tt class="py-op">:</tt> <tt class="py-number">2</tt><tt class="py-op">}</tt><tt class="py-op">,</tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line">                 <tt class="py-string">'nic-eth'</tt><tt class="py-op">:</tt> <tt class="py-op">{</tt><tt class="py-string">'numports'</tt><tt class="py-op">:</tt> <tt class="py-number">2</tt><tt class="py-op">}</tt><tt class="py-op">,</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line">                 <tt class="py-string">'console-serial'</tt><tt class="py-op">:</tt> <tt class="py-op">{</tt><tt class="py-string">'numports'</tt><tt class="py-op">:</tt> <tt class="py-number">1</tt><tt class="py-op">}</tt><tt class="py-op">}</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line">    <tt id="link-5" class="py-name" targets="Variable clusto.drivers.devices.servers.penguincomputing.PenguinServer2U.rack_units=clusto.drivers.devices.servers.penguincomputing.PenguinServer2U-class.html#rack_units"><a title="clusto.drivers.devices.servers.penguincomputing.PenguinServer2U.rack_units" class="py-name" href="#" onclick="return doclink('link-5', 'rack_units', 'link-5');">rack_units</a></tt> <tt class="py-op">=</tt> <tt class="py-number">2</tt> </tt>
+</div><a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="clusto-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Mar  8 10:47:24 2011
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
