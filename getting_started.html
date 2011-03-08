@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Getting Started &mdash; clusto v0.5.27 documentation</title>
+    <link rel="stylesheet" href="static/default.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.5.27',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <link rel="top" title="clusto v0.5.27 documentation" href="index.html" />
+    <link rel="next" title="Tutorial" href="tutorial.html" />
+    <link rel="prev" title="Welcome to clusto’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tutorial.html" title="Tutorial"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to clusto’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">clusto v0.5.27 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Release:</th><td class="field-body">0.5</td>
+</tr>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">May 06, 2010</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="from-debian-package">
+<h3>From debian package<a class="headerlink" href="#from-debian-package" title="Permalink to this headline">¶</a></h3>
+<p>Add the following to your /etc/apt/sources.list:</p>
+<div class="highlight-python"><pre>deb http://mirrors.digg.com/digg digg-public-lenny main contrib non-free</pre>
+</div>
+<p>Update the index and install clusto:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># aptitude update</span>
+<span class="c"># aptitude install clusto</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="building-an-rpm-package">
+<h3>Building an rpm package<a class="headerlink" href="#building-an-rpm-package" title="Permalink to this headline">¶</a></h3>
+<p>You may need to install rpmdevtools beforehand, or run the rpmbuild as root:</p>
+<div class="highlight-python"><pre>$ cd rpm/
+$ ./make_tarball.sh
+$ rpmbuild -ta clusto-$VERSION.tar.gz</pre>
+</div>
+</div>
+<div class="section" id="from-source">
+<h3>From source<a class="headerlink" href="#from-source" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>$ git clone git://github.com/digg/clusto.git
+$ cd clusto
+$ python setup.py build</pre>
+</div>
+<p>As root:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># python setup.py install</span>
+<span class="c"># mkdir /etc/clusto /var/lib/clusto</span>
+<span class="c"># cp conf/* /etc/clusto/</span>
+<span class="c"># cp contrib/* /var/lib/clusto/</span>
+</pre></div>
+</div>
+<p>You may need to install additional python libraries for certain features of clusto to function properly.</p>
+<ul class="simple">
+<li>SQLAlchemy: <a class="reference external" href="http://www.sqlalchemy.org/">http://www.sqlalchemy.org/</a></li>
+<li>setuptools: <a class="reference external" href="http://peak.telecommunity.com/">http://peak.telecommunity.com/</a></li>
+<li>scapy: <a class="reference external" href="http://www.secdev.org/projects/scapy/doc/">http://www.secdev.org/projects/scapy/doc/</a></li>
+<li>ipython: <a class="reference external" href="http://ipython.scipy.org/moin/">http://ipython.scipy.org/moin/</a></li>
+<li>IPy: <a class="reference external" href="http://c0re.23.nu/c0de/IPy/">http://c0re.23.nu/c0de/IPy/</a></li>
+<li>MySQLdb: <a class="reference external" href="http://sourceforge.net/projects/mysql-python/">http://sourceforge.net/projects/mysql-python/</a></li>
+<li>libvirt: <a class="reference external" href="http://libvirt.org/">http://libvirt.org/</a></li>
+<li>simplejson: <a class="reference external" href="http://code.google.com/p/simplejson/">http://code.google.com/p/simplejson/</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>Clusto is built on top of SQLAlchemy and therefore should work with any backend database available to that library. For the same of simplicity, the following documentation assumes you are using a MySQL backend.</p>
+<div class="section" id="create-a-mysql-database">
+<h3>Create a MySQL database<a class="headerlink" href="#create-a-mysql-database" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre># aptitude install mysql-server
+# mysql -u root
+mysql&gt; CREATE DATABASE clusto;
+mysql&gt; GRANT ALL PRIVILEGES ON clusto.* TO 'clustouser'@'localhost' IDENTIFIED BY 'clustopass';
+mysql&gt; FLUSH PRIVILEGES;</pre>
+</div>
+</div>
+<div class="section" id="etc-clusto-clusto-conf">
+<h3>/etc/clusto/clusto.conf<a class="headerlink" href="#etc-clusto-clusto-conf" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>[clusto]
+dsn = mysql://clustouser:clustopass@127.0.0.1/clusto</pre>
+</div>
+</div>
+<div class="section" id="creating-tables">
+<h3>Creating tables<a class="headerlink" href="#creating-tables" title="Permalink to this headline">¶</a></h3>
+<p>Using clusto-shell:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">init_clusto</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Getting Started</a><ul>
+<li><a class="reference external" href="#installation">Installation</a><ul>
+<li><a class="reference external" href="#from-debian-package">From debian package</a></li>
+<li><a class="reference external" href="#building-an-rpm-package">Building an rpm package</a></li>
+<li><a class="reference external" href="#from-source">From source</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#configuration">Configuration</a><ul>
+<li><a class="reference external" href="#create-a-mysql-database">Create a MySQL database</a></li>
+<li><a class="reference external" href="#etc-clusto-clusto-conf">/etc/clusto/clusto.conf</a></li>
+<li><a class="reference external" href="#creating-tables">Creating tables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="index.html"
+                                  title="previous chapter">Welcome to clusto&#8217;s documentation!</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="tutorial.html"
+                                  title="next chapter">Tutorial</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="sources/getting_started.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="tutorial.html" title="Tutorial"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to clusto’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">clusto v0.5.27 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2010, Digg, Inc..
+      Last updated on May 06, 2010.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>
