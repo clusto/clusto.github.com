@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -5,21 +7,22 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Using clusto &mdash; clusto v0.5.27 documentation</title>
-    <link rel="stylesheet" href="static/default.css" type="text/css" />
-    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    <title>Using clusto &mdash; clusto v0.5.32 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.5.27',
-        COLLAPSE_MODINDEX: false,
+        VERSION:     '0.5.32',
+        COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  false
       };
     </script>
-    <script type="text/javascript" src="static/jquery.js"></script>
-    <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="clusto v0.5.27 documentation" href="index.html" />
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="clusto v0.5.32 documentation" href="index.html" />
     <link rel="next" title="Services" href="services.html" />
     <link rel="prev" title="Tutorial" href="tutorial.html" /> 
   </head>
@@ -36,7 +39,7 @@
         <li class="right" >
           <a href="tutorial.html" title="Tutorial"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">clusto v0.5.27 documentation</a> &raquo;</li> 
+        <li><a href="index.html">clusto v0.5.32 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -51,9 +54,9 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field"><th class="field-name">Release:</th><td class="field-body">0.5</td>
+<tr class="field"><th class="field-name">Release:</th><td class="field-body"></td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">May 06, 2010</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">March 08, 2011</td>
 </tr>
 </tbody>
 </table>
@@ -61,7 +64,7 @@
 <div class="section" id="ipmanagers-for-your-subnets">
 <h2>IPManagers for your subnets<a class="headerlink" href="#ipmanagers-for-your-subnets" title="Permalink to this headline">¶</a></h2>
 <p>Clusto requires that every IP address you bind to a server must be associated with an IPManager instance for that subnet. This allows you to do dynamic allocation of addresses and associate related information (eg. netmask, broadcast) with every address. These features are especially useful when using clusto&#8217;s DHCP server.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">from</span> <span class="nn">clusto.drivers</span> <span class="k">import</span> <span class="n">IPManager</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">clusto.drivers</span> <span class="kn">import</span> <span class="n">IPManager</span>
 <span class="n">ipman</span> <span class="o">=</span> <span class="n">IPManager</span><span class="p">(</span><span class="s">&#39;subnet-dmz&#39;</span><span class="p">,</span> <span class="n">baseip</span><span class="o">=</span><span class="s">&#39;192.168.20.0&#39;</span><span class="p">,</span> <span class="n">netmask</span><span class="o">=</span><span class="s">&#39;255.255.252.0&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -69,9 +72,9 @@
 <div class="section" id="simpleentitynamemanager">
 <h2>SimpleEntityNameManager<a class="headerlink" href="#simpleentitynamemanager" title="Permalink to this headline">¶</a></h2>
 <p>In order to automatically discover and create new server objects, Clusto needs to be able to generate new names for objects. SimpleEntityNameManagers provide an allocate(Driver) method that creates a new instance and generates a name for it.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">from</span> <span class="nn">clusto.drivers</span> <span class="k">import</span> <span class="n">SimpleEntityNameManager</span><span class="p">,</span> <span class="n">PenguinServer</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">clusto.drivers</span> <span class="kn">import</span> <span class="n">SimpleEntityNameManager</span><span class="p">,</span> <span class="n">PenguinServer</span>
 
-<span class="n">names</span> <span class="o">=</span> <span class="n">SimpleEntityNameManager</span><span class="p">(</span><span class="s">&#39;servernames&#39;</span><span class="p">,</span> <span class="n">basename</span><span class="o">=</span><span class="s">&#39;s&#39;</span><span class="p">,</span> <span class="n">digits</span><span class="o">=</span><span class="mf">4</span><span class="p">)</span>
+<span class="n">names</span> <span class="o">=</span> <span class="n">SimpleEntityNameManager</span><span class="p">(</span><span class="s">&#39;servernames&#39;</span><span class="p">,</span> <span class="n">basename</span><span class="o">=</span><span class="s">&#39;s&#39;</span><span class="p">,</span> <span class="n">digits</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">server</span> <span class="o">=</span> <span class="n">names</span><span class="o">.</span><span class="n">allocate</span><span class="p">(</span><span class="n">PenguinServer</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -81,7 +84,7 @@
 <h2>Creating a datacenter<a class="headerlink" href="#creating-a-datacenter" title="Permalink to this headline">¶</a></h2>
 <p>Clusto comes ready to use with Basic drivers for a variety of entities and devices most systems engineers are familiar with. These Basic drivers can be used directly if only basic functionality is desired, but are intended to be subclassed and overridden with different variables and method. It is considered a best practice to create subclasses in case you need to customize a driver later on.
 This is an example of a custom datacenter driver representing a colocation facility. (src/clusto/drivers/locations/datacenters/equinixdatacenter.py):</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">from</span> <span class="nn">basicdatacenter</span> <span class="k">import</span> <span class="n">BasicDatacenter</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">basicdatacenter</span> <span class="kn">import</span> <span class="n">BasicDatacenter</span>
 
 <span class="k">class</span> <span class="nc">EquinixDatacenter</span><span class="p">(</span><span class="n">BasicDatacenter</span><span class="p">):</span>
        <span class="sd">&#39;&#39;&#39;</span>
@@ -92,12 +95,12 @@ This is an example of a custom datacenter driver representing a colocation facil
 </pre></div>
 </div>
 <p>Add the following to src/clusto/drivers/locations/datacenters/__init__.py:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">from</span> <span class="nn">equinixdatacenter</span> <span class="k">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">equinixdatacenter</span> <span class="kn">import</span> <span class="o">*</span>
 </pre></div>
 </div>
 <p>This subclass is an example of a simple wrapper that does not provide additional functionality beyond distinguishing this type of datacenter from another one.</p>
 <p>At clusto&#8217;s core, it&#8217;s a tool for gluing together other services, protocols, and logic in a data-centric way. An example of such usage would be a method that opens a ticket with the colo provider for a remote hands action. Add the following to equinixdatacenter.py:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">from</span> <span class="nn">smtplib</span> <span class="k">import</span> <span class="n">SMTP</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">smtplib</span> <span class="kn">import</span> <span class="n">SMTP</span>
 <span class="k">def</span> <span class="nf">remote_hands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="s">&#39;low&#39;</span><span class="p">,</span> <span class="n">mail_server</span><span class="o">=</span><span class="s">&#39;mail.example.com&#39;</span><span class="p">,</span> <span class="n">mail_from</span><span class="o">=</span><span class="s">&#39;clusto@example.com&#39;</span><span class="p">,</span> <span class="n">mail_to</span><span class="o">=</span><span class="s">&#39;remotehands@datacenter.net&#39;</span><span class="p">):</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="s">&#39;From: </span><span class="si">%s</span><span class="se">\r\n</span><span class="s">To: </span><span class="si">%s</span><span class="se">\r\n</span><span class="s">Subject: Remote hands request: </span><span class="si">%s</span><span class="s"> priority</span><span class="se">\r\n\r\n</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mail_from</span><span class="p">,</span> <span class="n">mail_to</span><span class="p">,</span> <span class="n">priority</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
         <span class="n">server</span> <span class="o">=</span> <span class="n">SMTP</span><span class="p">(</span><span class="n">mail_server</span><span class="p">)</span>
@@ -106,7 +109,7 @@ This is an example of a custom datacenter driver representing a colocation facil
 </pre></div>
 </div>
 <p>Using clusto-shell we can instantiate our new datacenter and test the remote_hands method:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">from</span> <span class="nn">clusto.drivers</span> <span class="k">import</span> <span class="n">EquinixDatacenter</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">clusto.drivers</span> <span class="kn">import</span> <span class="n">EquinixDatacenter</span>
 
 <span class="n">datacenter</span> <span class="o">=</span> <span class="n">EquinixDatacenter</span><span class="p">(</span><span class="s">&#39;eqix-sv3&#39;</span><span class="p">)</span>
 <span class="n">datacenter</span><span class="o">.</span><span class="n">remote_hands</span><span class="p">(</span><span class="s">&#39;Turn on power for new racks in my cage&#39;</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="s">&#39;high&#39;</span><span class="p">)</span>
@@ -118,7 +121,7 @@ This is an example of a custom datacenter driver representing a colocation facil
 <p>Rack factories are fairly specific to each organization&#8217;s environment... Common rack layouts are uncommon. For these types of highly-customized features, you&#8217;ll need to modify the files in /var/lib/clusto to suit your needs. Clusto ships with some examples of the files used by Digg.</p>
 <p>Take a look at /var/lib/clusto/rackfactory.py to get an idea of how to programatically define rack layouts.</p>
 <p>Continuing our example from above, let&#8217;s assume the remote hands at the datacenter plugged in your new rack and closed the ticket. Now you want to be able to manipulate the rack in clusto and start adding servers to it. Let&#8217;s go back to clusto-shell:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">from</span> <span class="nn">clusto.drivers</span> <span class="k">import</span> <span class="n">APCRack</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">clusto.drivers</span> <span class="kn">import</span> <span class="n">APCRack</span>
 
 <span class="n">rack</span> <span class="o">=</span> <span class="n">APCRack</span><span class="p">(</span><span class="s">&#39;sv3-001&#39;</span><span class="p">)</span>
 <span class="n">rack</span><span class="o">.</span><span class="n">set_attr</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s">&#39;racklayout&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s">&#39;201001&#39;</span><span class="p">)</span>
@@ -131,7 +134,7 @@ This is an example of a custom datacenter driver representing a colocation facil
 <div class="section" id="rack-factory">
 <h2>Rack factory<a class="headerlink" href="#rack-factory" title="Permalink to this headline">¶</a></h2>
 <p>If you have more than one rack using the same layout of devices and connections between them, clusto can ease a lot of the data entry involved with creating and populating new racks with custom RackFactory classes:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">from</span> <span class="nn">rackfactory</span> <span class="k">import</span> <span class="n">get_factory</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rackfactory</span> <span class="kn">import</span> <span class="n">get_factory</span>
 
 <span class="n">factory</span> <span class="o">=</span> <span class="n">get_factory</span><span class="p">(</span><span class="s">&#39;sv3-001&#39;</span><span class="p">)</span>
 <span class="n">factory</span><span class="o">.</span><span class="n">connect_ports</span><span class="p">()</span>
@@ -165,10 +168,10 @@ manager = XenVMManager('xenmanager')
 <p>Now that you have your host machines configured, allocate a new VM:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">vm</span> <span class="o">=</span> <span class="n">XenVirtualServer</span><span class="p">(</span><span class="s">&#39;xenvm1&#39;</span><span class="p">)</span>
 <span class="n">vm</span><span class="o">.</span><span class="n">bind_ip_to_osport</span><span class="p">(</span><span class="s">&#39;192.168.1.51&#39;</span><span class="p">,</span> <span class="s">&#39;eth0&#39;</span><span class="p">)</span>
-<span class="n">vm</span><span class="o">.</span><span class="n">set_port_attr</span><span class="p">(</span><span class="s">&#39;nic-eth&#39;</span><span class="p">,</span> <span class="mf">1</span><span class="p">,</span> <span class="s">&#39;mac&#39;</span><span class="p">,</span> <span class="s">&#39;02:52:0a:00:00:01&#39;</span><span class="p">)</span>
-<span class="n">vm</span><span class="o">.</span><span class="n">set_attr</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s">&#39;system&#39;</span><span class="p">,</span> <span class="n">subkey</span><span class="o">=</span><span class="s">&#39;memory&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">1024</span><span class="p">)</span>
-<span class="n">vm</span><span class="o">.</span><span class="n">set_attr</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s">&#39;system&#39;</span><span class="p">,</span> <span class="n">subkey</span><span class="o">=</span><span class="s">&#39;disk&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">20</span><span class="p">)</span>
-<span class="n">vm</span><span class="o">.</span><span class="n">set_attr</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s">&#39;system&#39;</span><span class="p">,</span> <span class="n">subkey</span><span class="o">=</span><span class="s">&#39;cpucount&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">1</span><span class="p">)</span>
+<span class="n">vm</span><span class="o">.</span><span class="n">set_port_attr</span><span class="p">(</span><span class="s">&#39;nic-eth&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;mac&#39;</span><span class="p">,</span> <span class="s">&#39;02:52:0a:00:00:01&#39;</span><span class="p">)</span>
+<span class="n">vm</span><span class="o">.</span><span class="n">set_attr</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s">&#39;system&#39;</span><span class="p">,</span> <span class="n">subkey</span><span class="o">=</span><span class="s">&#39;memory&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+<span class="n">vm</span><span class="o">.</span><span class="n">set_attr</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s">&#39;system&#39;</span><span class="p">,</span> <span class="n">subkey</span><span class="o">=</span><span class="s">&#39;disk&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">vm</span><span class="o">.</span><span class="n">set_attr</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s">&#39;system&#39;</span><span class="p">,</span> <span class="n">subkey</span><span class="o">=</span><span class="s">&#39;cpucount&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">manager</span><span class="o">.</span><span class="n">allocate</span><span class="p">(</span><span class="n">vm</span><span class="p">)</span>
 
 <span class="n">vm</span><span class="o">.</span><span class="n">vm_create</span><span class="p">()</span>         <span class="c"># Create the LVM logical volumes, define the domain</span>
@@ -183,6 +186,32 @@ Created v1000
 $ clusto vm start v1000</pre>
 </div>
 </div>
+<div class="section" id="pool-types">
+<h2>Pool types<a class="headerlink" href="#pool-types" title="Permalink to this headline">¶</a></h2>
+<p>Clusto currently supports three different types of &#8220;pools.&#8221; Pools are used to group entities together and apply attributes to the groupings. The supported pool types are:</p>
+<dl class="docutils">
+<dt>Pool</dt>
+<dd>This is your basic pool type. An entity can only be in a given pool once.</dd>
+<dt>ExclusivePool</dt>
+<dd>A given entity can only be in an ExclusivePool if it is in NO other pools. This is useful for tracking things like unallocated servers; you would not want a server marked unallocated if it is already a member of your &#8220;production&#8221; pool.</dd>
+<dt>UniquePool</dt>
+<dd>A given entity can only be in a UniquePool if it is not in any other UniquePool(s). This pool type is intended to be subclassed. For example you may want to create EnvironmentPool to represent &#8220;development&#8221;, &#8220;staging&#8221;, and &#8220;production&#8221; environments; UniquePool is useful because you would not want a given entity to be in both &#8220;production&#8221; and &#8220;development&#8221;.</dd>
+</dl>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">clusto.drivers</span> <span class="kn">import</span> <span class="n">UniquePool</span><span class="p">,</span> <span class="n">PenguinServer</span>
+
+<span class="k">class</span> <span class="nc">EnvironmentPool</span><span class="p">(</span><span class="n">UniquePool</span><span class="p">):</span>
+    <span class="n">_driver_name</span> <span class="o">=</span> <span class="s">&quot;environment_pool&quot;</span>
+
+<span class="n">development</span> <span class="o">=</span> <span class="n">EnvironmentPool</span><span class="p">(</span><span class="s">&quot;development&quot;</span><span class="p">)</span>
+<span class="n">staging</span> <span class="o">=</span> <span class="n">EnvironmentPool</span><span class="p">(</span><span class="s">&quot;staging&quot;</span><span class="p">)</span>
+<span class="n">production</span> <span class="o">=</span> <span class="n">EnvironmentPool</span><span class="p">(</span><span class="s">&quot;production&quot;</span><span class="p">)</span>
+<span class="n">server</span> <span class="o">=</span> <span class="n">PenguinServer</span><span class="p">(</span><span class="s">&quot;s0001&quot;</span><span class="p">)</span>
+<span class="n">development</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">server</span><span class="p">)</span>
+<span class="n">production</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">server</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>PoolException: PenguinServer(name=s0001, type=server, driver=penguinserver) is already in UniquePool(s) [UniquePool(name=development, type=pool, driver=unique_pool)].</p>
+</div>
 </div>
 
 
@@ -191,43 +220,39 @@ $ clusto vm start v1000</pre>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-            <h3><a href="index.html">Table Of Contents</a></h3>
-            <ul>
-<li><a class="reference external" href="">Using clusto</a><ul>
-<li><a class="reference external" href="#ipmanagers-for-your-subnets">IPManagers for your subnets</a></li>
-<li><a class="reference external" href="#simpleentitynamemanager">SimpleEntityNameManager</a></li>
-<li><a class="reference external" href="#creating-a-datacenter">Creating a datacenter</a></li>
-<li><a class="reference external" href="#adding-racks-to-the-datacenter">Adding racks to the datacenter</a></li>
-<li><a class="reference external" href="#rack-factory">Rack factory</a></li>
-<li><a class="reference external" href="#virtual-machines">Virtual machines</a></li>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Using clusto</a><ul>
+<li><a class="reference internal" href="#ipmanagers-for-your-subnets">IPManagers for your subnets</a></li>
+<li><a class="reference internal" href="#simpleentitynamemanager">SimpleEntityNameManager</a></li>
+<li><a class="reference internal" href="#creating-a-datacenter">Creating a datacenter</a></li>
+<li><a class="reference internal" href="#adding-racks-to-the-datacenter">Adding racks to the datacenter</a></li>
+<li><a class="reference internal" href="#rack-factory">Rack factory</a></li>
+<li><a class="reference internal" href="#virtual-machines">Virtual machines</a></li>
+<li><a class="reference internal" href="#pool-types">Pool types</a></li>
 </ul>
 </li>
 </ul>
 
-            <h4>Previous topic</h4>
-            <p class="topless"><a href="tutorial.html"
-                                  title="previous chapter">Tutorial</a></p>
-            <h4>Next topic</h4>
-            <p class="topless"><a href="services.html"
-                                  title="next chapter">Services</a></p>
-            <h3>This Page</h3>
-            <ul class="this-page-menu">
-              <li><a href="sources/using.txt"
-                     rel="nofollow">Show Source</a></li>
-            </ul>
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="tutorial.html"
+                        title="previous chapter">Tutorial</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="services.html"
+                        title="next chapter">Services</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -244,13 +269,13 @@ $ clusto vm start v1000</pre>
         <li class="right" >
           <a href="tutorial.html" title="Tutorial"
              >previous</a> |</li>
-        <li><a href="index.html">clusto v0.5.27 documentation</a> &raquo;</li> 
+        <li><a href="index.html">clusto v0.5.32 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-      &copy; Copyright 2010, Digg, Inc..
-      Last updated on May 06, 2010.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+        &copy; Copyright 2011, Clusto Org.
+      Last updated on Mar 08, 2011.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
     </div>
   </body>
 </html>

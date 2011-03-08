@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -5,21 +7,22 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Getting Started &mdash; clusto v0.5.27 documentation</title>
-    <link rel="stylesheet" href="static/default.css" type="text/css" />
-    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    <title>Getting Started &mdash; clusto v0.5.32 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.5.27',
-        COLLAPSE_MODINDEX: false,
+        VERSION:     '0.5.32',
+        COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  false
       };
     </script>
-    <script type="text/javascript" src="static/jquery.js"></script>
-    <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="clusto v0.5.27 documentation" href="index.html" />
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="clusto v0.5.32 documentation" href="index.html" />
     <link rel="next" title="Tutorial" href="tutorial.html" />
     <link rel="prev" title="Welcome to clusto’s documentation!" href="index.html" /> 
   </head>
@@ -36,7 +39,7 @@
         <li class="right" >
           <a href="index.html" title="Welcome to clusto’s documentation!"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">clusto v0.5.27 documentation</a> &raquo;</li> 
+        <li><a href="index.html">clusto v0.5.32 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -51,9 +54,9 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field"><th class="field-name">Release:</th><td class="field-body">0.5</td>
+<tr class="field"><th class="field-name">Release:</th><td class="field-body"></td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">May 06, 2010</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">March 08, 2011</td>
 </tr>
 </tbody>
 </table>
@@ -138,49 +141,44 @@ dsn = mysql://clustouser:clustopass@127.0.0.1/clusto</pre>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-            <h3><a href="index.html">Table Of Contents</a></h3>
-            <ul>
-<li><a class="reference external" href="">Getting Started</a><ul>
-<li><a class="reference external" href="#installation">Installation</a><ul>
-<li><a class="reference external" href="#from-debian-package">From debian package</a></li>
-<li><a class="reference external" href="#building-an-rpm-package">Building an rpm package</a></li>
-<li><a class="reference external" href="#from-source">From source</a></li>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a><ul>
+<li><a class="reference internal" href="#from-debian-package">From debian package</a></li>
+<li><a class="reference internal" href="#building-an-rpm-package">Building an rpm package</a></li>
+<li><a class="reference internal" href="#from-source">From source</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#configuration">Configuration</a><ul>
-<li><a class="reference external" href="#create-a-mysql-database">Create a MySQL database</a></li>
-<li><a class="reference external" href="#etc-clusto-clusto-conf">/etc/clusto/clusto.conf</a></li>
-<li><a class="reference external" href="#creating-tables">Creating tables</a></li>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#create-a-mysql-database">Create a MySQL database</a></li>
+<li><a class="reference internal" href="#etc-clusto-clusto-conf">/etc/clusto/clusto.conf</a></li>
+<li><a class="reference internal" href="#creating-tables">Creating tables</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 
-            <h4>Previous topic</h4>
-            <p class="topless"><a href="index.html"
-                                  title="previous chapter">Welcome to clusto&#8217;s documentation!</a></p>
-            <h4>Next topic</h4>
-            <p class="topless"><a href="tutorial.html"
-                                  title="next chapter">Tutorial</a></p>
-            <h3>This Page</h3>
-            <ul class="this-page-menu">
-              <li><a href="sources/getting_started.txt"
-                     rel="nofollow">Show Source</a></li>
-            </ul>
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to clusto&#8217;s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tutorial.html"
+                        title="next chapter">Tutorial</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -197,13 +195,13 @@ dsn = mysql://clustouser:clustopass@127.0.0.1/clusto</pre>
         <li class="right" >
           <a href="index.html" title="Welcome to clusto’s documentation!"
              >previous</a> |</li>
-        <li><a href="index.html">clusto v0.5.27 documentation</a> &raquo;</li> 
+        <li><a href="index.html">clusto v0.5.32 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-      &copy; Copyright 2010, Digg, Inc..
-      Last updated on May 06, 2010.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+        &copy; Copyright 2011, Clusto Org.
+      Last updated on Mar 08, 2011.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
     </div>
   </body>
 </html>

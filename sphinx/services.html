@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -5,21 +7,22 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Services &mdash; clusto v0.5.27 documentation</title>
-    <link rel="stylesheet" href="static/default.css" type="text/css" />
-    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    <title>Services &mdash; clusto v0.5.32 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.5.27',
-        COLLAPSE_MODINDEX: false,
+        VERSION:     '0.5.32',
+        COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  false
       };
     </script>
-    <script type="text/javascript" src="static/jquery.js"></script>
-    <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="clusto v0.5.27 documentation" href="index.html" />
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="clusto v0.5.32 documentation" href="index.html" />
     <link rel="next" title="Command line usage" href="cmdline.html" />
     <link rel="prev" title="Using clusto" href="using.html" /> 
   </head>
@@ -36,7 +39,7 @@
         <li class="right" >
           <a href="using.html" title="Using clusto"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">clusto v0.5.27 documentation</a> &raquo;</li> 
+        <li><a href="index.html">clusto v0.5.32 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -51,9 +54,9 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field"><th class="field-name">Release:</th><td class="field-body">0.5</td>
+<tr class="field"><th class="field-name">Release:</th><td class="field-body"></td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">May 06, 2010</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">March 08, 2011</td>
 </tr>
 </tbody>
 </table>
@@ -77,13 +80,13 @@ Specify custom options that can be set via clusto attributes, in addition to tho
 <div class="section" id="example">
 <h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">p</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="s">&#39;pxeboot-servers&#39;</span><span class="p">)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">set_attr</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s">&#39;dhcp&#39;</span><span class="p">,</span> <span class="n">subkey</span><span class="o">=</span><span class="s">&#39;enabled&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">1</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">set_attr</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s">&#39;dhcp&#39;</span><span class="p">,</span> <span class="n">subkey</span><span class="o">=</span><span class="s">&#39;enabled&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">set_attr</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s">&#39;dhcp&#39;</span><span class="p">,</span> <span class="n">subkey</span><span class="o">=</span><span class="s">&#39;tftp_server&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s">&#39;192.168.1.1&#39;</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">set_attr</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s">&#39;dhcp&#39;</span><span class="p">,</span> <span class="n">subkey</span><span class="o">=</span><span class="s">&#39;tftp_filename&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s">&#39;/pxelinux.0&#39;</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">set_attr</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s">&#39;dhcp&#39;</span><span class="p">,</span> <span class="n">subkey</span><span class="o">=</span><span class="s">&#39;domain&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s">&#39;example.org&#39;</span><span class="p">)</span>
 
 <span class="n">s</span> <span class="o">=</span> <span class="n">BasicServer</span><span class="p">(</span><span class="s">&#39;ex0000&#39;</span><span class="p">)</span>
-<span class="n">s</span><span class="o">.</span><span class="n">set_port_attr</span><span class="p">(</span><span class="s">&#39;nic-eth&#39;</span><span class="p">,</span> <span class="mf">1</span><span class="p">,</span> <span class="s">&#39;mac&#39;</span><span class="p">,</span> <span class="s">&#39;00:11:22:33:44:55&#39;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">set_port_attr</span><span class="p">(</span><span class="s">&#39;nic-eth&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;mac&#39;</span><span class="p">,</span> <span class="s">&#39;00:11:22:33:44:55&#39;</span><span class="p">)</span>
 <span class="n">s</span><span class="o">.</span><span class="n">bind_ip_to_osport</span><span class="p">(</span><span class="s">&#39;192.168.1.50&#39;</span><span class="p">,</span> <span class="s">&#39;eth0&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -110,44 +113,39 @@ interface &lt;int&gt;
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-            <h3><a href="index.html">Table Of Contents</a></h3>
-            <ul>
-<li><a class="reference external" href="">Services</a><ul>
-<li><a class="reference external" href="#dhcp-server">DHCP server</a><ul>
-<li><a class="reference external" href="#configuration-options">Configuration options</a></li>
-<li><a class="reference external" href="#usage">Usage</a></li>
-<li><a class="reference external" href="#example">Example</a></li>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Services</a><ul>
+<li><a class="reference internal" href="#dhcp-server">DHCP server</a><ul>
+<li><a class="reference internal" href="#configuration-options">Configuration options</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
-<li><a class="reference external" href="#snmp-trap-listener">SNMP trap listener</a></li>
+<li><a class="reference internal" href="#snmp-trap-listener">SNMP trap listener</a></li>
 </ul>
 </li>
 </ul>
 
-            <h4>Previous topic</h4>
-            <p class="topless"><a href="using.html"
-                                  title="previous chapter">Using clusto</a></p>
-            <h4>Next topic</h4>
-            <p class="topless"><a href="cmdline.html"
-                                  title="next chapter">Command line usage</a></p>
-            <h3>This Page</h3>
-            <ul class="this-page-menu">
-              <li><a href="sources/services.txt"
-                     rel="nofollow">Show Source</a></li>
-            </ul>
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="using.html"
+                        title="previous chapter">Using clusto</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="cmdline.html"
+                        title="next chapter">Command line usage</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -164,13 +162,13 @@ interface &lt;int&gt;
         <li class="right" >
           <a href="using.html" title="Using clusto"
              >previous</a> |</li>
-        <li><a href="index.html">clusto v0.5.27 documentation</a> &raquo;</li> 
+        <li><a href="index.html">clusto v0.5.32 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-      &copy; Copyright 2010, Digg, Inc..
-      Last updated on May 06, 2010.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+        &copy; Copyright 2011, Clusto Org.
+      Last updated on Mar 08, 2011.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
     </div>
   </body>
 </html>
